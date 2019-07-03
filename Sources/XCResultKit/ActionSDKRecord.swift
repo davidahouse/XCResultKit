@@ -14,13 +14,13 @@
 
 import Foundation
 
-struct ActionSDKRecord: XCResultObject {
+public struct ActionSDKRecord: XCResultObject {
     let name: XCResultString?
     let identifier: XCResultString?
     let operatingSystemVersion: XCResultString?
     let isInternal: XCResultBool?
 
-    init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String : AnyObject]) {
         name = parse(element: "name", from: json)
         identifier = parse(element: "identifier", from: json)
         operatingSystemVersion = parse(element: "operatingSystemVersion", from: json)

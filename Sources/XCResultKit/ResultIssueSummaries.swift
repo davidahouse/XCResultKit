@@ -14,13 +14,13 @@
 
 import Foundation
 
-struct ResultIssueSummaries: XCResultObject {
+public struct ResultIssueSummaries: XCResultObject {
     let analyzerWarningSummaries: [IssueSummary]
     let errorSummaries: [IssueSummary]
     let testFailureSummaries: [TestFailureIssueSummary]
     let warningSummaries: [IssueSummary]
     
-    init?(_ json: [String: AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         
         // Ensure we have the correct type here
         guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "ResultIssueSummaries" else {

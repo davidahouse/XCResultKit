@@ -15,14 +15,14 @@
 
 import Foundation
 
-struct ResultMetrics: XCResultObject {
+public struct ResultMetrics: XCResultObject {
     let analyzerWarningCount: XCResultInt?
     let errorCount: XCResultInt?
     let testsCount: XCResultInt?
     let testsFailedCount: XCResultInt?
     let warningCount: XCResultInt?
     
-    init?(_ json: [String: AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
     
         // Ensure we have the correct type here
         guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "ResultMetrics" else {

@@ -17,14 +17,14 @@
 
 import Foundation
 
-struct ActionsInvocationRecord: XCResultObject {
+public struct ActionsInvocationRecord: XCResultObject {
     let metadataRef: Reference?
     let metrics: ResultMetrics
     let issues: ResultIssueSummaries
     let actions: [ActionRecord]
     let archive: ArchiveInfo?
     
-    init?(_ json: [String: AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         
         // Ensure we have the correct type here
         guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "ActionsInvocationRecord" else {

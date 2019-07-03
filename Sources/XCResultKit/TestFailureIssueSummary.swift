@@ -12,10 +12,10 @@
 
 import Foundation
 
-struct TestFailureIssueSummary: XCResultObject {
+public struct TestFailureIssueSummary: XCResultObject {
     let testCaseName: XCResultString?
     
-    init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String : AnyObject]) {
         testCaseName = parse(element: "testCaseName", from: json)
     }
 }

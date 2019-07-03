@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct ActionRecord: XCResultObject {
+public struct ActionRecord: XCResultObject {
     let schemeCommandName: XCResultString?
     let schemeTaskName: XCResultString?
     let title: XCResultString?
@@ -28,7 +28,7 @@ struct ActionRecord: XCResultObject {
     let buildResult: ActionResult?
     let actionResult: ActionResult?
     
-    init?(_ json: [String: AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         
         // Ensure we have the correct type here
         guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "ActionRecord" else {

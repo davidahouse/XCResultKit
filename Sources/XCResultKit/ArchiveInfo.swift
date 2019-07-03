@@ -11,10 +11,10 @@
 
 import Foundation
 
-struct ArchiveInfo: XCResultObject {
+public struct ArchiveInfo: XCResultObject {
     let path: XCResultString?
     
-    init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String : AnyObject]) {
         path = parse(element: "path", from: json)
     }
 }

@@ -12,11 +12,11 @@
 
 import Foundation
 
-struct DocumentLocation: XCResultObject {
+public struct DocumentLocation: XCResultObject {
     let url: XCResultString?
     let concreteTypeName: XCResultString?
     
-    init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String : AnyObject]) {
         url = parse(element: "url", from: json)
         concreteTypeName = parse(element: "concreteTypeName", from: json)
     }

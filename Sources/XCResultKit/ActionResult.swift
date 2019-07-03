@@ -19,7 +19,7 @@
 
 import Foundation
 
-struct ActionResult: XCResultObject {
+public struct ActionResult: XCResultObject {
     let resultName: XCResultString?
     let status: XCResultString?
     let metrics: ResultMetrics?
@@ -30,7 +30,7 @@ struct ActionResult: XCResultObject {
     let testsRef: Reference?
     let diagnosticsRef: Reference?
 
-    init?(_ json: [String: AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         
         // Ensure we have the correct type here
         guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "_ActionResult" else {

@@ -14,13 +14,13 @@
 
 import Foundation
 
-struct IssueSummary: XCResultObject {
+public struct IssueSummary: XCResultObject {
     let issueType: XCResultString?
     let message: XCResultString?
     let producingTarget: XCResultString?
     let documentLocationInCreatingWorkspace: DocumentLocation?
     
-    init?(_ json: [String: AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         
         // Ensure we have the correct type here
         guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "IssueSummary" else {

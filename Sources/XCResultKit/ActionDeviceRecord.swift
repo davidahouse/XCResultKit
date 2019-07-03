@@ -28,7 +28,7 @@
 
 import Foundation
 
-struct ActionDeviceRecord: XCResultObject {
+public struct ActionDeviceRecord: XCResultObject {
     let name: XCResultString?
     let isConcreteDevice: XCResultBool?
     let operatingSystemVersion: XCResultString?
@@ -48,7 +48,7 @@ struct ActionDeviceRecord: XCResultObject {
     let logicalCPUCoresPerPackage: XCResultInt?
     let platformRecord: ActionPlatformRecord?
     
-    init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String : AnyObject]) {
         name = parse(element: "name", from: json)
         isConcreteDevice = parse(element: "isConcreteDevice", from: json)
         operatingSystemVersion = parse(element: "operatingSystemVersion", from: json)

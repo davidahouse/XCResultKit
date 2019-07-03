@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct XCResultString: XCResultObject {
+public struct XCResultString: XCResultObject {
     let value: String
     
-    init?(_ json: [String: AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         // Ensure we have the correct type here
         guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "String" else {
             print("Incorrect type, expecting String")
