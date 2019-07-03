@@ -12,7 +12,12 @@
 
 import Foundation
 
-struct ActionPlatformRecord {
-    let identifier: String
-    let userDescription: String
+struct ActionPlatformRecord: XCResultObject {
+    let identifier: XCResultString?
+    let userDescription: XCResultString?
+    
+    init?(_ json: [String : AnyObject]) {
+        identifier = parse(element: "identifier", from: json)
+        userDescription = parse(element: "userDescription", from: json)
+    }
 }

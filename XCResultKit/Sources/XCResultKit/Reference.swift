@@ -14,7 +14,18 @@
 
 import Foundation
 
-struct Reference {
-    let id: String
+struct Reference: XCResultObject {
+    let id: XCResultString?
     let targetType: TypeDefinition?
+    
+    init?(_ json: [String: AnyObject]) {
+        // Ensure we have the correct type here
+        guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "Reference" else {
+            print("Incorrect type, expecting Reference")
+            return nil
+        }
+        
+        id = parse(element: "id", from: json)
+        targetType = parse(element: "targetType", from: json)
+    }
 }
