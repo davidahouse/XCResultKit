@@ -15,10 +15,10 @@
 import Foundation
 
 public struct ResultIssueSummaries: XCResultObject {
-    let analyzerWarningSummaries: [IssueSummary]
-    let errorSummaries: [IssueSummary]
-    let testFailureSummaries: [TestFailureIssueSummary]
-    let warningSummaries: [IssueSummary]
+    public let analyzerWarningSummaries: [IssueSummary]
+    public let errorSummaries: [IssueSummary]
+    public let testFailureSummaries: [TestFailureIssueSummary]
+    public let warningSummaries: [IssueSummary]
     
     public init?(_ json: [String: AnyObject]) {
         

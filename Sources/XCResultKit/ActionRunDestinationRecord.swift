@@ -16,11 +16,11 @@
 import Foundation
 
 public struct ActionRunDestinationRecord: XCResultObject {
-    let displayName: XCResultString?
-    let targetArchitecture: XCResultString?
-    let targetDeviceRecord: ActionDeviceRecord?
-    let localComputerRecord: ActionDeviceRecord?
-    let targetSDKRecord: ActionSDKRecord?
+    public let displayName: XCResultString?
+    public let targetArchitecture: XCResultString?
+    public let targetDeviceRecord: ActionDeviceRecord?
+    public let localComputerRecord: ActionDeviceRecord?
+    public let targetSDKRecord: ActionSDKRecord?
     
     public init?(_ json: [String : AnyObject]) {
         displayName = parse(element: "displayName", from: json)

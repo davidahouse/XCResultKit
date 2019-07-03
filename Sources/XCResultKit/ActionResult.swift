@@ -20,15 +20,15 @@
 import Foundation
 
 public struct ActionResult: XCResultObject {
-    let resultName: XCResultString?
-    let status: XCResultString?
-    let metrics: ResultMetrics?
-    let issues: ResultIssueSummaries?
-    let coverage: CodeCoverageInfo?
-    let timelineRef: Reference?
-    let logRef: Reference?
-    let testsRef: Reference?
-    let diagnosticsRef: Reference?
+    public let resultName: XCResultString?
+    public let status: XCResultString?
+    public let metrics: ResultMetrics?
+    public let issues: ResultIssueSummaries?
+    public let coverage: CodeCoverageInfo?
+    public let timelineRef: Reference?
+    public let logRef: Reference?
+    public let testsRef: Reference?
+    public let diagnosticsRef: Reference?
 
     public init?(_ json: [String: AnyObject]) {
         

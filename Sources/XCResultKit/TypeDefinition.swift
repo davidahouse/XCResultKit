@@ -13,7 +13,7 @@
 import Foundation
 
 public struct TypeDefinition: XCResultObject {
-    let name: XCResultString?
+    public let name: XCResultString?
     
     public init?(_ json: [String : AnyObject]) {
         name = parse(element: "name", from: json)

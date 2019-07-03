@@ -18,11 +18,11 @@
 import Foundation
 
 public struct ActionsInvocationRecord: XCResultObject {
-    let metadataRef: Reference?
-    let metrics: ResultMetrics
-    let issues: ResultIssueSummaries
-    let actions: [ActionRecord]
-    let archive: ArchiveInfo?
+    public let metadataRef: Reference?
+    public let metrics: ResultMetrics
+    public let issues: ResultIssueSummaries
+    public let actions: [ActionRecord]
+    public let archive: ArchiveInfo?
     
     public init?(_ json: [String: AnyObject]) {
         

@@ -14,9 +14,9 @@
 import Foundation
 
 public struct CodeCoverageInfo: XCResultObject {
-    let hasCoverageData: XCResultBool?
-    let reportRef: Reference?
-    let archiveRef: Reference?
+    public let hasCoverageData: XCResultBool?
+    public let reportRef: Reference?
+    public let archiveRef: Reference?
     
     public init?(_ json: [String: AnyObject]) {
         

@@ -16,11 +16,11 @@
 import Foundation
 
 public struct ResultMetrics: XCResultObject {
-    let analyzerWarningCount: XCResultInt?
-    let errorCount: XCResultInt?
-    let testsCount: XCResultInt?
-    let testsFailedCount: XCResultInt?
-    let warningCount: XCResultInt?
+    public let analyzerWarningCount: XCResultInt?
+    public let errorCount: XCResultInt?
+    public let testsCount: XCResultInt?
+    public let testsFailedCount: XCResultInt?
+    public let warningCount: XCResultInt?
     
     public init?(_ json: [String: AnyObject]) {
     

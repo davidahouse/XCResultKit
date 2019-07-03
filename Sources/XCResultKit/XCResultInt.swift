@@ -8,7 +8,7 @@
 import Foundation
 
 public struct XCResultInt: XCResultObject {
-    let value: Int
+    public let value: Int
     
     public init?(_ json: [String: AnyObject]) {
         // Ensure we have the correct type here

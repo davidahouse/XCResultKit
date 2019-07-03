@@ -13,8 +13,8 @@
 import Foundation
 
 public struct ActionPlatformRecord: XCResultObject {
-    let identifier: XCResultString?
-    let userDescription: XCResultString?
+    public let identifier: XCResultString?
+    public let userDescription: XCResultString?
     
     public init?(_ json: [String : AnyObject]) {
         identifier = parse(element: "identifier", from: json)

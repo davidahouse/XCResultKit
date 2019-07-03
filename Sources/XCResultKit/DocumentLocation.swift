@@ -13,8 +13,8 @@
 import Foundation
 
 public struct DocumentLocation: XCResultObject {
-    let url: XCResultString?
-    let concreteTypeName: XCResultString?
+    public let url: XCResultString?
+    public let concreteTypeName: XCResultString?
     
     public init?(_ json: [String : AnyObject]) {
         url = parse(element: "url", from: json)

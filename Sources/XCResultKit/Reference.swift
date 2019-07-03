@@ -15,8 +15,8 @@
 import Foundation
 
 public struct Reference: XCResultObject {
-    let id: XCResultString?
-    let targetType: TypeDefinition?
+    public let id: XCResultString?
+    public let targetType: TypeDefinition?
     
     public init?(_ json: [String: AnyObject]) {
         // Ensure we have the correct type here

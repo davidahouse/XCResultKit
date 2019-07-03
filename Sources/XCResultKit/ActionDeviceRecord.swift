@@ -29,24 +29,24 @@
 import Foundation
 
 public struct ActionDeviceRecord: XCResultObject {
-    let name: XCResultString?
-    let isConcreteDevice: XCResultBool?
-    let operatingSystemVersion: XCResultString?
-    let operatingSystemVersionWithBuildNumber: XCResultString?
-    let nativeArchitecture: XCResultString?
-    let modelName: XCResultString?
-    let modelCode: XCResultString?
-    let modelUTI: XCResultString?
-    let identifier: XCResultString?
-    let isWireless: XCResultBool?
-    let cpuKind: XCResultString?
-    let cpuCount: XCResultInt?
-    let cpuSpeedInMhz: XCResultInt?
-    let busSpeedInMhz: XCResultInt?
-    let ramSizeInMegabytes: XCResultInt?
-    let physicalCPUCoresPerPackage: XCResultInt?
-    let logicalCPUCoresPerPackage: XCResultInt?
-    let platformRecord: ActionPlatformRecord?
+    public let name: XCResultString?
+    public let isConcreteDevice: XCResultBool?
+    public let operatingSystemVersion: XCResultString?
+    public let operatingSystemVersionWithBuildNumber: XCResultString?
+    public let nativeArchitecture: XCResultString?
+    public let modelName: XCResultString?
+    public let modelCode: XCResultString?
+    public let modelUTI: XCResultString?
+    public let identifier: XCResultString?
+    public let isWireless: XCResultBool?
+    public let cpuKind: XCResultString?
+    public let cpuCount: XCResultInt?
+    public let cpuSpeedInMhz: XCResultInt?
+    public let busSpeedInMhz: XCResultInt?
+    public let ramSizeInMegabytes: XCResultInt?
+    public let physicalCPUCoresPerPackage: XCResultInt?
+    public let logicalCPUCoresPerPackage: XCResultInt?
+    public let platformRecord: ActionPlatformRecord?
     
     public init?(_ json: [String : AnyObject]) {
         name = parse(element: "name", from: json)

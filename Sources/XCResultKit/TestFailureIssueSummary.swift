@@ -13,7 +13,7 @@
 import Foundation
 
 public struct TestFailureIssueSummary: XCResultObject {
-    let testCaseName: XCResultString?
+    public let testCaseName: XCResultString?
     
     public init?(_ json: [String : AnyObject]) {
         testCaseName = parse(element: "testCaseName", from: json)

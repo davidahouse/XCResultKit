@@ -15,10 +15,10 @@
 import Foundation
 
 public struct IssueSummary: XCResultObject {
-    let issueType: XCResultString?
-    let message: XCResultString?
-    let producingTarget: XCResultString?
-    let documentLocationInCreatingWorkspace: DocumentLocation?
+    public let issueType: XCResultString?
+    public let message: XCResultString?
+    public let producingTarget: XCResultString?
+    public let documentLocationInCreatingWorkspace: DocumentLocation?
     
     public init?(_ json: [String: AnyObject]) {
         

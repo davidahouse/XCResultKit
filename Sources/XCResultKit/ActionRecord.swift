@@ -19,14 +19,14 @@
 import Foundation
 
 public struct ActionRecord: XCResultObject {
-    let schemeCommandName: XCResultString?
-    let schemeTaskName: XCResultString?
-    let title: XCResultString?
-    let startedTime: XCResultDate?
-    let endedTime: XCResultDate?
-    let runDestination: ActionRunDestinationRecord?
-    let buildResult: ActionResult?
-    let actionResult: ActionResult?
+    public let schemeCommandName: XCResultString?
+    public let schemeTaskName: XCResultString?
+    public let title: XCResultString?
+    public let startedTime: XCResultDate?
+    public let endedTime: XCResultDate?
+    public let runDestination: ActionRunDestinationRecord?
+    public let buildResult: ActionResult?
+    public let actionResult: ActionResult?
     
     public init?(_ json: [String: AnyObject]) {
         

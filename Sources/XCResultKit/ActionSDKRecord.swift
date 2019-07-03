@@ -15,10 +15,10 @@
 import Foundation
 
 public struct ActionSDKRecord: XCResultObject {
-    let name: XCResultString?
-    let identifier: XCResultString?
-    let operatingSystemVersion: XCResultString?
-    let isInternal: XCResultBool?
+    public let name: XCResultString?
+    public let identifier: XCResultString?
+    public let operatingSystemVersion: XCResultString?
+    public let isInternal: XCResultBool?
 
     public init?(_ json: [String : AnyObject]) {
         name = parse(element: "name", from: json)
