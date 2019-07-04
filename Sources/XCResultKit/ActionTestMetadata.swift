@@ -34,9 +34,9 @@ public struct ActionTestMetadata: XCResultObject {
             testStatus = try xcRequired(element: "testStatus", from: json)
             duration = xcOptional(element: "duration", from: json)
             summaryRef = xcOptional(element: "summaryRef", from: json)
-            performanceMetricsCount = try xcRequired(element: "performanceMetricsCount", from: json)
-            failureSummariesCount = try xcRequired(element: "failureSummariesCount", from: json)
-            activitySummariesCount = try xcRequired(element: "activitySummariesCount", from: json)
+            performanceMetricsCount = xcOptional(element: "performanceMetricsCount", from: json)
+            failureSummariesCount = xcOptional(element: "failureSummariesCount", from: json)
+            activitySummariesCount = xcOptional(element: "activitySummariesCount", from: json)
         } catch {
             print("Error parsing ActionTestMetadata: \(error.localizedDescription)")
             return nil
