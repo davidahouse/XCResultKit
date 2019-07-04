@@ -13,11 +13,17 @@
 import Foundation
 
 public struct DocumentLocation: XCResultObject {
-    public let url: XCResultString?
-    public let concreteTypeName: XCResultString?
+    public let url: String
+    public let concreteTypeName: String
     
     public init?(_ json: [String : AnyObject]) {
-        url = parse(element: "url", from: json)
-        concreteTypeName = parse(element: "concreteTypeName", from: json)
+        
+        do {
+            url = try xcRequired(element: "url", from: json)
+            concreteTypeName = try xcRequired(element: "concreteTypeName", from: json)
+        } catch {
+            print("Error parsing DocumentLocation: \(error.localizedDescription)")
+            return nil
+        }
     }
 }

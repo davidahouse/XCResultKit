@@ -16,7 +16,7 @@ final class ResultMetricsTests: XCTestCase {
         
         let parsed = ResultMetrics(parse(resultMetricsJson))
         XCTAssertNotNil(parsed)
-        XCTAssertEqual(parsed?.testsCount?.value, 1)
+        XCTAssertEqual(parsed?.testsCount, 1)
     }
     
     static var allTests = [

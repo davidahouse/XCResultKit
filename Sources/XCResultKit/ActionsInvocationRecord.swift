@@ -26,37 +26,15 @@ public struct ActionsInvocationRecord: XCResultObject {
     
     public init?(_ json: [String: AnyObject]) {
         
-        // Ensure we have the correct type here
-        guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "ActionsInvocationRecord" else {
-            print("Incorrect type, expecting ActionsInvocationRecord")
+        do {
+            metrics = try xcRequired(element: "metrics", from: json)
+            issues = try xcRequired(element: "issues", from: json)
+            metadataRef = xcOptional(element: "metadataRef", from: json)
+            archive = xcOptional(element: "archive", from: json)
+            actions = xcArray(element: "actions", from: json).compactMap { ActionRecord($0) }
+        } catch {
+            print("Error parsing ActionsInvocationRecord: \(error.localizedDescription)")
             return nil
         }
-        
-        // Also ensure we have our required top level data
-        guard let jsonMetrics = json["metrics"] as? [String: AnyObject], let actualMetrics = ResultMetrics(jsonMetrics) else {
-            print("metrics key not found")
-            return nil
-        }
-        metrics = actualMetrics
-        
-        guard let jsonIssues = json["issues"] as? [String: AnyObject], let actualIssues = ResultIssueSummaries(jsonIssues) else {
-            print("issues key not found")
-            return nil
-        }
-        issues = actualIssues
-        
-        if let jsonActions = json["actions"] as? [String: AnyObject], let actualActionsArray = jsonActions["_values"] as? [[String: AnyObject]] {
-            actions = actualActionsArray.compactMap { ActionRecord($0) }
-        } else {
-            actions = []
-        }
-        
-        if let jsonMetadataRef = json["metadataRef"] as? [String: AnyObject] {
-            metadataRef = Reference(jsonMetadataRef)
-        } else {
-            metadataRef = nil
-        }
-        
-        archive = parse(element: "archive", from: json)
     }
 }

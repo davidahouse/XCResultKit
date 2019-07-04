@@ -14,12 +14,12 @@ final class XCResultBoolTests: XCTestCase {
     
     func testCanParseCorrectlyFormattedJSON() {
         
-        let parsed = XCResultBool(parse(boolJson))
+        let parsed = Bool(parse(boolJson))
         guard let parsedObject = parsed else {
             XCTFail("Unable to parse XCResultBool object")
             return
         }
-        XCTAssertTrue(parsedObject.value)
+        XCTAssertTrue(parsedObject)
     }
     
     static var allTests = [

@@ -12,17 +12,17 @@
 
 import Foundation
 
-public struct ActionTestPlanRunSummary: ActionAbstractTestSummary, XCResultObject {
-    public var name: XCResultString?
+public struct ActionTestPlanRunSummary: XCResultObject {
+    public var name: String
     public let testableSummaries: [ActionTestableSummary]
     
     public init?(_ json: [String : AnyObject]) {
-        name = parse(element: "name", from: json)
-        
-        if let jsonSummaries = json["testableSummaries"] as? [String: AnyObject], let actualSummariesArray = jsonSummaries["_values"] as? [[String: AnyObject]] {
-            testableSummaries = actualSummariesArray.compactMap { ActionTestableSummary($0) }
-        } else {
-            testableSummaries = []
+        do {
+            name = try xcRequired(element: "name", from: json)
+            testableSummaries = xcArray(element: "testableSummaries", from: json).compactMap { ActionTestableSummary($0) }
+        } catch {
+            print("Error parsing ActionTestMetadata: \(error.localizedDescription)")
+            return nil
         }
     }
 }

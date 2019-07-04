@@ -13,11 +13,16 @@
 import Foundation
 
 public struct ActionPlatformRecord: XCResultObject {
-    public let identifier: XCResultString?
-    public let userDescription: XCResultString?
+    public let identifier: String
+    public let userDescription: String
     
     public init?(_ json: [String : AnyObject]) {
-        identifier = parse(element: "identifier", from: json)
-        userDescription = parse(element: "userDescription", from: json)
+        do {
+            identifier = try xcRequired(element: "identifier", from: json)
+            userDescription = try xcRequired(element: "userDescription", from: json)
+        } catch {
+            print("Error parsing ActionPlatformRecord: \(error.localizedDescription)")
+            return nil
+        }
     }
 }

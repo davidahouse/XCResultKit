@@ -14,20 +14,13 @@
 import Foundation
 
 public struct CodeCoverageInfo: XCResultObject {
-    public let hasCoverageData: XCResultBool?
+    public let hasCoverageData: Bool?
     public let reportRef: Reference?
     public let archiveRef: Reference?
     
     public init?(_ json: [String: AnyObject]) {
-        
-        // Ensure we have the correct type here
-        guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "CodeCoverageInfo" else {
-            print("Incorrect type, expecting CodeCoverageInfo")
-            return nil
-        }
-        
-        hasCoverageData = parse(element: "hasCoverageData", from: json)
-        reportRef = parse(element: "reportRef", from: json)
-        archiveRef = parse(element: "archiveRef", from: json)
+        hasCoverageData = xcOptional(element: "hasCoverageData", from: json)
+        reportRef = xcOptional(element: "reportRef", from: json)
+        archiveRef = xcOptional(element: "archiveRef", from: json)
     }
 }

@@ -18,23 +18,28 @@
 import Foundation
 
 public struct ActionTestMetadata: XCResultObject {
-    public let name: XCResultString?
-    public let identifier: XCResultString?
-    public let testStatus: XCResultString?
-    public let duration: XCResultDouble?
+    public let name: String
+    public let identifier: String
+    public let testStatus: String
+    public let duration: Double?
     public let summaryRef: Reference?
-    public let performanceMetricsCount: XCResultInt?
-    public let failureSummariesCount: XCResultInt?
-    public let activitySummariesCount: XCResultInt?
+    public let performanceMetricsCount: Int?
+    public let failureSummariesCount: Int?
+    public let activitySummariesCount: Int?
     
     public init?(_ json: [String : AnyObject]) {
-        name = parse(element: "name", from: json)
-        identifier = parse(element: "identifier", from: json)
-        testStatus = parse(element: "testStatus", from: json)
-        duration = parse(element: "duration", from: json)
-        summaryRef = parse(element: "summaryRef", from: json)
-        performanceMetricsCount = parse(element: "performanceMetricsCount", from: json)
-        failureSummariesCount = parse(element: "failureSummariesCount", from: json)
-        activitySummariesCount = parse(element: "activitySummariesCount", from: json)
+        do {
+            name = try xcRequired(element: "name", from: json)
+            identifier = try xcRequired(element: "identifier", from: json)
+            testStatus = try xcRequired(element: "testStatus", from: json)
+            duration = xcOptional(element: "duration", from: json)
+            summaryRef = xcOptional(element: "summaryRef", from: json)
+            performanceMetricsCount = try xcRequired(element: "performanceMetricsCount", from: json)
+            failureSummariesCount = try xcRequired(element: "failureSummariesCount", from: json)
+            activitySummariesCount = try xcRequired(element: "activitySummariesCount", from: json)
+        } catch {
+            print("Error parsing ActionTestMetadata: \(error.localizedDescription)")
+            return nil
+        }
     }
 }

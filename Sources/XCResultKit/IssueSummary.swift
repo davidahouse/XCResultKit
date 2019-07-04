@@ -15,22 +15,21 @@
 import Foundation
 
 public struct IssueSummary: XCResultObject {
-    public let issueType: XCResultString?
-    public let message: XCResultString?
-    public let producingTarget: XCResultString?
+    public let issueType: String
+    public let message: String
+    public let producingTarget: String?
     public let documentLocationInCreatingWorkspace: DocumentLocation?
     
     public init?(_ json: [String: AnyObject]) {
         
-        // Ensure we have the correct type here
-        guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "IssueSummary" else {
-            print("Incorrect type, expecting IssueSummary")
+        do {
+            issueType = try xcRequired(element: "issueType", from: json)
+            message = try xcRequired(element: "message", from: json)
+            producingTarget = xcOptional(element: "producingTarget", from: json)
+            documentLocationInCreatingWorkspace = xcOptional(element: "documentLocationInCreatingWorkspace", from: json)
+        } catch {
+            print("Error parsing IssueSummary: \(error.localizedDescription)")
             return nil
         }
-        
-        issueType = parse(element: "issueType", from: json)
-        message = parse(element: "message", from: json)
-        producingTarget = parse(element: "producingTarget", from: json)
-        documentLocationInCreatingWorkspace = parse(element: "documentLocationInCreatingWorkspace", from: json)
     }
 }

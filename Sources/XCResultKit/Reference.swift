@@ -15,17 +15,17 @@
 import Foundation
 
 public struct Reference: XCResultObject {
-    public let id: XCResultString?
+    public let id: String
     public let targetType: TypeDefinition?
     
     public init?(_ json: [String: AnyObject]) {
-        // Ensure we have the correct type here
-        guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "Reference" else {
-            print("Incorrect type, expecting Reference")
+        
+        do {
+            id = try xcRequired(element: "id", from: json)
+            targetType = xcOptional(element: "targetType", from: json)
+        } catch {
+            print("Error parsing Reference: \(error.localizedDescription)")
             return nil
         }
-        
-        id = parse(element: "id", from: json)
-        targetType = parse(element: "targetType", from: json)
     }
 }

@@ -14,12 +14,7 @@ import Foundation
 public struct ActionTestPlanRunSummaries: XCResultObject {
     public let summaries: [ActionTestPlanRunSummary]
     
-    public init?(_ json: [String : AnyObject]) {
-        
-        if let jsonSummaries = json["summaries"] as? [String: AnyObject], let actualSummariesArray = jsonSummaries["_values"] as? [[String: AnyObject]] {
-            summaries = actualSummariesArray.compactMap { ActionTestPlanRunSummary($0) }
-        } else {
-            summaries = []
-        }
+    public init?(_ json: [String : AnyObject]) {        
+        summaries = xcArray(element: "summaries", from: json).compactMap { ActionTestPlanRunSummary($0) }
     }
 }
