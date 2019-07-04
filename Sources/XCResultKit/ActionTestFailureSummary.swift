@@ -15,15 +15,21 @@
 import Foundation
 
 public struct ActionTestFailureSummary: XCResultObject {
-    public let message: XCResultString?
-    public let fileName: XCResultString?
-    public let lineNumber: XCResultInt?
-    public let isPerformanceFailure: XCResultBool?
+    public let message: String?
+    public let fileName: String
+    public let lineNumber: Int
+    public let isPerformanceFailure: Bool
     
     public init?(_ json: [String : AnyObject]) {
-        message = parse(element: "message", from: json)
-        fileName = parse(element: "fileName", from: json)
-        lineNumber = parse(element: "lineNumber", from: json)
-        isPerformanceFailure = parse(element: "isPerformanceFailure", from: json)
+        
+        do {
+            message = xcOptional(element: "message", from: json)
+            fileName = try xcRequired(element: "fileName", from: json)
+            lineNumber = try xcRequired(element: "lineNumber", from: json)
+            isPerformanceFailure = try xcRequired(element: "isPerformanceFailure", from: json)
+        } catch {
+            print("Error parsing ActionTestFailureSummary: \(error.localizedDescription)")
+            return nil
+        }
     }
 }

@@ -20,35 +20,23 @@
 import Foundation
 
 public struct ActionTestableSummary: XCResultObject {
-    public let projectRelativePath: XCResultString?
-    public let targetName: XCResultString?
-    public let testKind: XCResultString?
+    public let projectRelativePath: String?
+    public let targetName: String?
+    public let testKind: String?
     public let tests: [ActionTestSummaryGroup]
-    public let diagnosticsDirectoryName: XCResultString?
+    public let diagnosticsDirectoryName: String?
     public let failureSummaries: [ActionTestFailureSummary]
-    public let testLanguage: XCResultString?
-    public let testRegion: XCResultString?
+    public let testLanguage: String?
+    public let testRegion: String?
     
-    public init?(_ json: [String : AnyObject]) {
-        projectRelativePath = parse(element: "projectRelativePath", from: json)
-        targetName = parse(element: "targetName", from: json)
-        testKind = parse(element: "testKind", from: json)
-
-        if let jsonTests = json["tests"] as? [String: AnyObject], let actualTestsArray = jsonTests["_values"] as? [[String: AnyObject]] {
-            tests = actualTestsArray.compactMap { ActionTestSummaryGroup($0) }
-        } else {
-            tests = []
-        }
-
-        diagnosticsDirectoryName = parse(element: "diagnosticsDirectoryName", from: json)
-        
-        if let jsonSummaries = json["failureSummaries"] as? [String: AnyObject], let actualSummariesArray = jsonSummaries["_values"] as? [[String: AnyObject]] {
-            failureSummaries = actualSummariesArray.compactMap { ActionTestFailureSummary($0) }
-        } else {
-            failureSummaries = []
-        }
-        
-        testLanguage = parse(element: "testLanguage", from: json)
-        testRegion = parse(element: "testRegion", from: json)
+    public init?(_ json: [String : AnyObject]) {        
+        projectRelativePath = xcOptional(element: "projectRelativePath", from: json)
+        targetName = xcOptional(element: "targetName", from: json)
+        testKind = xcOptional(element: "testKind", from: json)
+        tests = xcArray(element: "tests", from: json).compactMap { ActionTestSummaryGroup($0) }
+        diagnosticsDirectoryName = xcOptional(element: "diagnosticsDirectoryName", from: json)
+        failureSummaries = xcArray(element: "failureSummaries", from: json).compactMap { ActionTestFailureSummary($0) }
+        testLanguage = xcOptional(element: "testLanguage", from: json)
+        testRegion = xcOptional(element: "testRegion", from: json)
     }
 }

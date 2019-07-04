@@ -15,15 +15,20 @@
 import Foundation
 
 public struct ActionSDKRecord: XCResultObject {
-    public let name: XCResultString?
-    public let identifier: XCResultString?
-    public let operatingSystemVersion: XCResultString?
-    public let isInternal: XCResultBool?
+    public let name: String
+    public let identifier: String
+    public let operatingSystemVersion: String
+    public let isInternal: Bool?
 
     public init?(_ json: [String : AnyObject]) {
-        name = parse(element: "name", from: json)
-        identifier = parse(element: "identifier", from: json)
-        operatingSystemVersion = parse(element: "operatingSystemVersion", from: json)
-        isInternal = parse(element: "isInternal", from: json)
+        do {
+            name = try xcRequired(element: "name", from: json)
+            identifier = try xcRequired(element: "identifier", from: json)
+            operatingSystemVersion = try xcRequired(element: "operatingSystemVersion", from: json)
+            isInternal = xcOptional(element: "isInternal", from: json)
+        } catch {
+            print("Error parsing ActionSDKRecord: \(error.localizedDescription)")
+            return nil
+        }
     }
 }

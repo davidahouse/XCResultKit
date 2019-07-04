@@ -16,24 +16,17 @@
 import Foundation
 
 public struct ResultMetrics: XCResultObject {
-    public let analyzerWarningCount: XCResultInt?
-    public let errorCount: XCResultInt?
-    public let testsCount: XCResultInt?
-    public let testsFailedCount: XCResultInt?
-    public let warningCount: XCResultInt?
+    public let analyzerWarningCount: Int?
+    public let errorCount: Int?
+    public let testsCount: Int?
+    public let testsFailedCount: Int?
+    public let warningCount: Int?
     
-    public init?(_ json: [String: AnyObject]) {
-    
-        // Ensure we have the correct type here
-        guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "ResultMetrics" else {
-            print("Incorrect type, expecting ResultMetrics")
-            return nil
-        }
-        
-        analyzerWarningCount = parse(element: "analyzerWarningCount", from: json)
-        errorCount = parse(element: "errorCount", from: json)
-        testsCount = parse(element: "testsCount", from: json)
-        testsFailedCount = parse(element: "testsFailedCount", from: json)
-        warningCount = parse(element: "warningCount", from: json)
+    public init?(_ json: [String: AnyObject]) {    
+        analyzerWarningCount = xcOptional(element: "analyzerWarningCount", from: json)
+        errorCount = xcOptional(element: "errorCount", from: json)
+        testsCount = xcOptional(element: "testsCount", from: json)
+        testsFailedCount = xcOptional(element: "testsFailedCount", from: json)
+        warningCount = xcOptional(element: "warningCount", from: json)
     }
 }

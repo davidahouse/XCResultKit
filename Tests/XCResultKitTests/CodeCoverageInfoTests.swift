@@ -21,7 +21,7 @@ final class CodeCoverageTests: XCTestCase {
             XCTFail("HasCoverageData should have been parseable")
             return
         }
-        XCTAssertTrue(hasCoverageData.value)
+        XCTAssertTrue(hasCoverageData)
     }
     
     static var allTests = [

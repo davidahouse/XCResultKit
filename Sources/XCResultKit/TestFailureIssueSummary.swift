@@ -13,9 +13,14 @@
 import Foundation
 
 public struct TestFailureIssueSummary: XCResultObject {
-    public let testCaseName: XCResultString?
+    public let testCaseName: String
     
     public init?(_ json: [String : AnyObject]) {
-        testCaseName = parse(element: "testCaseName", from: json)
+        do {
+            testCaseName = try xcRequired(element: "testCaseName", from: json)
+        } catch {
+            print("Error parsing ResultMetrics: \(error.localizedDescription)")
+            return nil
+        }
     }
 }

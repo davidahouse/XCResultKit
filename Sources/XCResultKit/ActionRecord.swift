@@ -19,30 +19,29 @@
 import Foundation
 
 public struct ActionRecord: XCResultObject {
-    public let schemeCommandName: XCResultString?
-    public let schemeTaskName: XCResultString?
-    public let title: XCResultString?
-    public let startedTime: XCResultDate?
-    public let endedTime: XCResultDate?
-    public let runDestination: ActionRunDestinationRecord?
-    public let buildResult: ActionResult?
-    public let actionResult: ActionResult?
+    public let schemeCommandName: String
+    public let schemeTaskName: String
+    public let title: String?
+    public let startedTime: Date
+    public let endedTime: Date
+    public let runDestination: ActionRunDestinationRecord
+    public let buildResult: ActionResult
+    public let actionResult: ActionResult
     
     public init?(_ json: [String: AnyObject]) {
         
-        // Ensure we have the correct type here
-        guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "ActionRecord" else {
-            print("Incorrect type, expecting ActionRecord")
+        do {
+            schemeCommandName = try xcRequired(element: "schemeCommandName", from: json)
+            schemeTaskName = try xcRequired(element: "schemeTaskName", from: json)
+            buildResult = try xcRequired(element: "buildResult", from: json)
+            actionResult = try xcRequired(element: "actionResult", from: json)
+            title = xcOptional(element: "title", from: json)
+            startedTime = try xcRequired(element: "startedTime", from: json)
+            endedTime = try xcRequired(element: "endedTime", from: json)
+            runDestination = try xcRequired(element: "runDestination", from: json)
+        } catch {
+            print("Error parsing ActionRecord: \(error.localizedDescription)")
             return nil
         }
-        
-        schemeCommandName = parse(element: "schemeCommandName", from: json)
-        schemeTaskName = parse(element: "schemeTaskName", from: json)
-        buildResult = parse(element: "buildResult", from: json)
-        actionResult = parse(element: "actionResult", from: json)
-        title = parse(element: "title", from: json)
-        startedTime = parse(element: "startedTime", from: json)
-        endedTime = parse(element: "endedTime", from: json)
-        runDestination = parse(element: "runDestination", from: json)
     }
 }

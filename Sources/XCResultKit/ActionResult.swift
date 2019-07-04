@@ -20,11 +20,11 @@
 import Foundation
 
 public struct ActionResult: XCResultObject {
-    public let resultName: XCResultString?
-    public let status: XCResultString?
-    public let metrics: ResultMetrics?
-    public let issues: ResultIssueSummaries?
-    public let coverage: CodeCoverageInfo?
+    public let resultName: String
+    public let status: String
+    public let metrics: ResultMetrics
+    public let issues: ResultIssueSummaries
+    public let coverage: CodeCoverageInfo
     public let timelineRef: Reference?
     public let logRef: Reference?
     public let testsRef: Reference?
@@ -32,21 +32,20 @@ public struct ActionResult: XCResultObject {
 
     public init?(_ json: [String: AnyObject]) {
         
-        // Ensure we have the correct type here
-        guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "_ActionResult" else {
-            print("Incorrect type, expecting ActionResult")
+        do {
+            resultName = try xcRequired(element: "resultName", from: json)
+            status = try xcRequired(element: "status", from: json)
+            metrics = try xcRequired(element: "metrics", from: json)
+            issues = try xcRequired(element: "issues", from: json)
+            coverage = try xcRequired(element: "coverage", from: json)
+            timelineRef = xcOptional(element: "timelineRef", from: json)
+            logRef = xcOptional(element: "logRef", from: json)
+            testsRef = xcOptional(element: "testsRef", from: json)
+            diagnosticsRef = xcOptional(element: "diagnosticsRef", from: json)
+        } catch {
+            print("Error parsing ActionResult: \(error.localizedDescription)")
             return nil
         }
-        
-        resultName = parse(element: "resultName", from: json)
-        status = parse(element: "status", from: json)
-        metrics = parse(element: "metrics", from: json)
-        issues = parse(element: "issues", from: json)
-        coverage = parse(element: "coverage", from: json)
-        timelineRef = parse(element: "timelineRef", from: json)
-        logRef = parse(element: "logRef", from: json)
-        testsRef = parse(element: "testsRef", from: json)
-        diagnosticsRef = parse(element: "diagnosticsRef", from: json)
     }
 }
 

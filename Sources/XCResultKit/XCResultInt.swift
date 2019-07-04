@@ -7,9 +7,8 @@
 
 import Foundation
 
-public struct XCResultInt: XCResultObject {
-    public let value: Int
-    
+extension Int: XCResultObject {
+
     public init?(_ json: [String: AnyObject]) {
         // Ensure we have the correct type here
         guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "Int" else {
@@ -21,7 +20,7 @@ public struct XCResultInt: XCResultObject {
             print("Unable to get int value")
             return nil
         }
-        
-        value = actualValue.integerValue
+
+        self = actualValue.integerValue
     }
 }

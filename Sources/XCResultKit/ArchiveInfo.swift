@@ -12,9 +12,9 @@
 import Foundation
 
 public struct ArchiveInfo: XCResultObject {
-    public let path: XCResultString?
+    public let path: String?
     
     public init?(_ json: [String : AnyObject]) {
-        path = parse(element: "path", from: json)
+        path = xcOptional(element: "path", from: json)
     }
 }
