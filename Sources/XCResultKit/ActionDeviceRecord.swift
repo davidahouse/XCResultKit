@@ -29,7 +29,7 @@
 import Foundation
 
 public struct ActionDeviceRecord: XCResultObject {
-    public let name: XCResultString?
+    public let name: String
     public let isConcreteDevice: XCResultBool?
     public let operatingSystemVersion: XCResultString?
     public let operatingSystemVersionWithBuildNumber: XCResultString?
@@ -49,23 +49,28 @@ public struct ActionDeviceRecord: XCResultObject {
     public let platformRecord: ActionPlatformRecord?
     
     public init?(_ json: [String : AnyObject]) {
-        name = parse(element: "name", from: json)
-        isConcreteDevice = parse(element: "isConcreteDevice", from: json)
-        operatingSystemVersion = parse(element: "operatingSystemVersion", from: json)
-        operatingSystemVersionWithBuildNumber = parse(element: "operatingSystemVersionWithBuildNumber", from: json)
-        nativeArchitecture = parse(element: "nativeArchitecture", from: json)
-        modelName = parse(element: "modelName", from: json)
-        modelCode = parse(element: "modelCode", from: json)
-        modelUTI = parse(element: "modelUTI", from: json)
-        identifier = parse(element: "identifier", from: json)
-        isWireless = parse(element: "isWireless", from: json)
-        cpuKind = parse(element: "cpuKind", from: json)
-        cpuCount = parse(element: "cpuCount", from: json)
-        cpuSpeedInMhz = parse(element: "cpuSpeedInMhz", from: json)
-        busSpeedInMhz = parse(element: "busSpeedInMhz", from: json)
-        ramSizeInMegabytes = parse(element: "ramSizeInMegabytes", from: json)
-        physicalCPUCoresPerPackage = parse(element: "physicalCPUCoresPerPackage", from: json)
-        logicalCPUCoresPerPackage = parse(element: "logicalCPUCoresPerPackage", from: json)
-        platformRecord = parse(element: "platformRecord", from: json)
+        do {
+            name = try xcRequired(element: "name", from: json)
+            isConcreteDevice = parse(element: "isConcreteDevice", from: json)
+            operatingSystemVersion = parse(element: "operatingSystemVersion", from: json)
+            operatingSystemVersionWithBuildNumber = parse(element: "operatingSystemVersionWithBuildNumber", from: json)
+            nativeArchitecture = parse(element: "nativeArchitecture", from: json)
+            modelName = parse(element: "modelName", from: json)
+            modelCode = parse(element: "modelCode", from: json)
+            modelUTI = parse(element: "modelUTI", from: json)
+            identifier = parse(element: "identifier", from: json)
+            isWireless = parse(element: "isWireless", from: json)
+            cpuKind = parse(element: "cpuKind", from: json)
+            cpuCount = parse(element: "cpuCount", from: json)
+            cpuSpeedInMhz = parse(element: "cpuSpeedInMhz", from: json)
+            busSpeedInMhz = parse(element: "busSpeedInMhz", from: json)
+            ramSizeInMegabytes = parse(element: "ramSizeInMegabytes", from: json)
+            physicalCPUCoresPerPackage = parse(element: "physicalCPUCoresPerPackage", from: json)
+            logicalCPUCoresPerPackage = parse(element: "logicalCPUCoresPerPackage", from: json)
+            platformRecord = parse(element: "platformRecord", from: json)
+        } catch {
+            print("Error initializing from json: \(error.localizedDescription)")
+            return nil
+        }
     }
 }
