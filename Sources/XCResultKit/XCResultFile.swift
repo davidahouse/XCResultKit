@@ -65,6 +65,31 @@ public class XCResultFile {
         }
     }
     
+    public func getActionTestSummary(id: String) -> ActionTestSummary? {
+        
+        guard let getOutput = shell(command: ["-l", "-c", "xcrun xcresulttool get --path \(url.path) --id \(id) --format json"]) else {
+            return nil
+        }
+        
+        do {
+            guard let data = getOutput.data(using: .utf8) else {
+                print("Unable to turn string into data, must not be a utf8 string")
+                return nil
+            }
+            
+            guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
+                print("Expecting top level dictionary but didn't find one")
+                return nil
+            }
+            
+            let summary = ActionTestSummary(rootJSON)
+            return summary
+        } catch {
+            print("Error deserializing JSON: \(error)")
+            return nil
+        }
+    }
+    
     public func getCodeCoverage() -> CodeCoverage? {
         
         guard let getOutput = shell(command: ["-l", "-c", "xcrun xccov view --report --json \(url.path)"]) else {
