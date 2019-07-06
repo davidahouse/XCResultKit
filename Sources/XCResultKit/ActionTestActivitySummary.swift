@@ -1,0 +1,44 @@
+//
+//  ActionTestActivitySummary.swift
+//  
+//
+//  Created by David House on 7/5/19.
+//
+//- ActionTestActivitySummary
+//    * Kind: object
+//* Properties:
+//+ title: String
+//+ activityType: String
+//+ uuid: String
+//+ start: Date?
+//+ finish: Date?
+//+ attachments: [ActionTestAttachment]
+//+ subactivities: [ActionTestActivitySummary]
+
+import Foundation
+
+struct ActionTestActivitySummary: XCResultObject {
+
+    let title: String
+    let activityType: String
+    let uuid: String
+    let start: Date?
+    let finish: Date?
+    let attachments: [ActionTestAttachment]
+    let subactivities: [ActionTestActivitySummary]
+
+    init?(_ json: [String : AnyObject]) {
+        do {
+            title = try xcRequired(element: "title", from: json)
+            activityType = try xcRequired(element: "activityType", from: json)
+            uuid = try xcRequired(element: "uuid", from: json)
+            start = xcOptional(element: "start", from: json)
+            finish = xcOptional(element: "finish", from: json)
+            attachments = xcArray(element: "attachments", from: json).compactMap { ActionTestAttachment($0) }
+            subactivities = xcArray(element: "subactivities", from: json).compactMap { ActionTestActivitySummary($0) }
+        } catch {
+            print("Error parsing ActionTestActivitySummary: \(error.localizedDescription)")
+            return nil
+        }
+    }
+}
