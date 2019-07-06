@@ -7,15 +7,15 @@
 
 import Foundation
 
-class XCResultFile {
+public class XCResultFile {
     
     let url: URL
     
-    init(url: URL) {
+    public init(url: URL) {
         self.url = url
     }
     
-    func getInvocationRecord() -> ActionsInvocationRecord? {
+    public func getInvocationRecord() -> ActionsInvocationRecord? {
         
         guard let getOutput = shell(command: ["-l", "-c", "xcrun xcresulttool get --path \(url.path) --format json"]) else {
             return nil
@@ -40,7 +40,7 @@ class XCResultFile {
         }
     }
     
-    func getTestPlanRunSummaries(id: String) -> ActionTestPlanRunSummaries? {
+    public func getTestPlanRunSummaries(id: String) -> ActionTestPlanRunSummaries? {
         
         guard let getOutput = shell(command: ["-l", "-c", "xcrun xcresulttool get --path \(url.path) --id \(id) --format json"]) else {
             return nil
