@@ -65,6 +65,26 @@ public class XCResultFile {
         }
     }
     
+    public func getCodeCoverage() -> CodeCoverage? {
+        
+        guard let getOutput = shell(command: ["-l", "-c", "xcrun xccov view --report --json \(url.path)"]) else {
+            return nil
+        }
+        
+        do {
+            guard let data = getOutput.data(using: .utf8) else {
+                print("Unable to turn string into data, must not be a utf8 string")
+                return nil
+            }
+            
+            let decoded = try JSONDecoder().decode(CodeCoverage.self, from: data)
+            return decoded
+        } catch {
+            print("Error deserializing JSON: \(error)")
+            return nil
+        }
+    }
+    
     private func shell(command: [String]) -> String? {
         let task = Process()
         task.launchPath = "/bin/sh"
