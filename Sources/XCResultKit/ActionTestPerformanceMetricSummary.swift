@@ -20,19 +20,19 @@
 
 import Foundation
 
-struct ActionTestPerformanceMetricSummary: XCResultObject {
-    let displayName: String
-    let unitOfMeasurement: String
-    let measurements: [Double]
-    let identifier: String?
-    let baselineName: String?
-    let baselineAverage: Double?
-    let maxPercentRegression: Double?
-    let maxPercentRelativeStandardDeviation: Double?
-    let maxRegression: Double?
-    let maxStandardDeviation: Double?
+public struct ActionTestPerformanceMetricSummary: XCResultObject {
+    public let displayName: String
+    public let unitOfMeasurement: String
+    public let measurements: [Double]
+    public let identifier: String?
+    public let baselineName: String?
+    public let baselineAverage: Double?
+    public let maxPercentRegression: Double?
+    public let maxPercentRelativeStandardDeviation: Double?
+    public let maxRegression: Double?
+    public let maxStandardDeviation: Double?
 
-    init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String : AnyObject]) {
         do {
             displayName = try xcRequired(element: "displayName", from: json)
             unitOfMeasurement = try xcRequired(element: "unitOfMeasurement", from: json)

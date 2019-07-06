@@ -16,17 +16,17 @@
 
 import Foundation
 
-struct ActionTestSummary: XCResultObject {
+public struct ActionTestSummary: XCResultObject {
 
-    let name: String
-    let identifier: String
-    let testStatus: String
-    let duration: Double
-    let performanceMetrics: [ActionTestPerformanceMetricSummary]
-    let failureSummaries: [ActionTestFailureSummary]
-    let activitySummaries: [ActionTestActivitySummary]
+    public let name: String
+    public let identifier: String
+    public let testStatus: String
+    public let duration: Double
+    public let performanceMetrics: [ActionTestPerformanceMetricSummary]
+    public let failureSummaries: [ActionTestFailureSummary]
+    public let activitySummaries: [ActionTestActivitySummary]
 
-    init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String : AnyObject]) {
         do {
             name = try xcRequired(element: "name", from: json)
             identifier = try xcRequired(element: "identifier", from: json)

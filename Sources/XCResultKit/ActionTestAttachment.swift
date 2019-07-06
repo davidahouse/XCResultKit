@@ -19,18 +19,18 @@
 
 import Foundation
 
-struct ActionTestAttachment: XCResultObject {
-    let uniformTypeIdentifier: String
-    let name: String?
-    let timestamp: Date?
+public struct ActionTestAttachment: XCResultObject {
+    public let uniformTypeIdentifier: String
+    public let name: String?
+    public let timestamp: Date?
     // TODO: userInfo
-    let lifetime: String
-    let inActivityIdentifier: Int
-    let filename: String?
-    let payloadRef: Reference?
-    let payloadSize: Int
+    public let lifetime: String
+    public let inActivityIdentifier: Int
+    public let filename: String?
+    public let payloadRef: Reference?
+    public let payloadSize: Int
 
-    init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String : AnyObject]) {
         do {
             uniformTypeIdentifier = try xcRequired(element: "uniformTypeIdentifier", from: json)
             name = xcOptional(element: "name", from: json)

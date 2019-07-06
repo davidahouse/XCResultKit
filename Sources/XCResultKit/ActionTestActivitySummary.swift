@@ -17,17 +17,17 @@
 
 import Foundation
 
-struct ActionTestActivitySummary: XCResultObject {
+public struct ActionTestActivitySummary: XCResultObject {
 
-    let title: String
-    let activityType: String
-    let uuid: String
-    let start: Date?
-    let finish: Date?
-    let attachments: [ActionTestAttachment]
-    let subactivities: [ActionTestActivitySummary]
+    public let title: String
+    public let activityType: String
+    public let uuid: String
+    public let start: Date?
+    public let finish: Date?
+    public let attachments: [ActionTestAttachment]
+    public let subactivities: [ActionTestActivitySummary]
 
-    init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String : AnyObject]) {
         do {
             title = try xcRequired(element: "title", from: json)
             activityType = try xcRequired(element: "activityType", from: json)
