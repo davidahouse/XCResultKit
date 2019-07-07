@@ -90,6 +90,19 @@ public class XCResultFile {
         }
     }
     
+    public func getPayload(id: String) -> Data? {
+        
+        guard let getOutput = shell(command: ["-l", "-c", "xcrun xcresulttool get --path \(url.path) --id \(id) --format json"]) else {
+            return nil
+        }
+        
+        guard let data = getOutput.data(using: .utf8) else {
+            print("Unable to turn string into data, must not be a utf8 string")
+            return nil
+        }
+        return data
+    }
+    
     public func getCodeCoverage() -> CodeCoverage? {
         
         guard let getOutput = shell(command: ["-l", "-c", "xcrun xccov view --report --json \(url.path)"]) else {
