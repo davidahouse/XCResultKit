@@ -92,7 +92,7 @@ public class XCResultFile {
     
     public func getPayload(id: String) -> Data? {
         
-        guard let getOutput = shell(command: ["-l", "-c", "xcrun xcresulttool get --path \(url.path) --id \(id) --format json"]) else {
+        guard let getOutput = shell(command: ["-l", "-c", "xcrun xcresulttool get --path \(url.path) --id \(id)"]) else {
             return nil
         }
         
