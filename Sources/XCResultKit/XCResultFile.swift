@@ -103,6 +103,13 @@ public class XCResultFile {
         return data
     }
     
+    public func exportPayload(id: String) -> URL? {
+        
+        let tempPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(id)
+        _ = shell(command: ["-l", "-c", "xcrun xcresulttool export --type file --path \(url.path) --id \(id) --output-path \(tempPath.path)"])
+        return tempPath
+    }
+    
     public func getCodeCoverage() -> CodeCoverage? {
         
         guard let getOutput = shell(command: ["-l", "-c", "xcrun xccov view --report --json \(url.path)"]) else {
