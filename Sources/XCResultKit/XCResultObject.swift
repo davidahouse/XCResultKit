@@ -48,3 +48,18 @@ func xcArray(element: String, from json: [String: AnyObject]) -> [[String: AnyOb
         return []
     }
 }
+
+extension Array where Element == [String: AnyObject] {
+
+    func ofType(_ type: String) -> [Element] {
+        return filter { json -> Bool in
+            guard let typeJson = json["_type"] as? [String: AnyObject] else { return false }
+            guard let typeNameJson = typeJson["_name"] as? String else { return false }
+            return type == typeNameJson
+        }
+    }
+
+    func ofType<T>(_ type: T.Type) -> [T] where T: XCResultObject {
+        return ofType(String(describing: type)).compactMap(T.init)
+    }
+}

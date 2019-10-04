@@ -33,9 +33,9 @@ public struct ActionTestableSummary: XCResultObject {
         projectRelativePath = xcOptional(element: "projectRelativePath", from: json)
         targetName = xcOptional(element: "targetName", from: json)
         testKind = xcOptional(element: "testKind", from: json)
-        tests = xcArray(element: "tests", from: json).compactMap { ActionTestSummaryGroup($0) }
+        tests = xcArray(element: "tests", from: json).ofType(ActionTestSummaryGroup.self)
         diagnosticsDirectoryName = xcOptional(element: "diagnosticsDirectoryName", from: json)
-        failureSummaries = xcArray(element: "failureSummaries", from: json).compactMap { ActionTestFailureSummary($0) }
+        failureSummaries = xcArray(element: "failureSummaries", from: json).ofType(ActionTestFailureSummary.self)
         testLanguage = xcOptional(element: "testLanguage", from: json)
         testRegion = xcOptional(element: "testRegion", from: json)
     }

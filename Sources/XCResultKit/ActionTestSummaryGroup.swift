@@ -25,8 +25,10 @@ public struct ActionTestSummaryGroup: XCResultObject {
             name = try xcRequired(element: "name", from: json)
             identifier = try xcRequired(element: "identifier", from: json)
             duration = try xcRequired(element: "duration", from: json)
-            subtestGroups = xcArray(element: "subtests", from: json).compactMap { ActionTestSummaryGroup($0) }
-            subtests = xcArray(element: "subtests", from: json).compactMap { ActionTestMetadata($0) }
+            subtestGroups = xcArray(element: "subtests", from: json)
+                .ofType(ActionTestSummaryGroup.self)
+            subtests = xcArray(element: "subtests", from: json)
+                .ofType(ActionTestMetadata.self)
         } catch {
             debug("Error parsing ActionTestSummaryGroup: \(error.localizedDescription)")
             return nil

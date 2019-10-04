@@ -36,7 +36,7 @@ public struct ActionTestPerformanceMetricSummary: XCResultObject {
         do {
             displayName = try xcRequired(element: "displayName", from: json)
             unitOfMeasurement = try xcRequired(element: "unitOfMeasurement", from: json)
-            measurements = xcArray(element: "measurements", from: json).compactMap { Double($0) }
+            measurements = xcArray(element: "measurements", from: json).ofType(Double.self)
             identifier = xcOptional(element: "identifier", from: json)
             baselineName = xcOptional(element: "baselineName", from: json)
             baselineAverage = xcOptional(element: "baselineAverage", from: json)

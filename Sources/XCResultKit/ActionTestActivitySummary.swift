@@ -34,8 +34,10 @@ public struct ActionTestActivitySummary: XCResultObject {
             uuid = try xcRequired(element: "uuid", from: json)
             start = xcOptional(element: "start", from: json)
             finish = xcOptional(element: "finish", from: json)
-            attachments = xcArray(element: "attachments", from: json).compactMap { ActionTestAttachment($0) }
-            subactivities = xcArray(element: "subactivities", from: json).compactMap { ActionTestActivitySummary($0) }
+            attachments = xcArray(element: "attachments", from: json)
+                .ofType(ActionTestAttachment.self)
+            subactivities = xcArray(element: "subactivities", from: json)
+                .ofType(ActionTestActivitySummary.self)
         } catch {
             debug("Error parsing ActionTestActivitySummary: \(error.localizedDescription)")
             return nil

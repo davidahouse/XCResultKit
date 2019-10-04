@@ -32,9 +32,12 @@ public struct ActionTestSummary: XCResultObject {
             identifier = try xcRequired(element: "identifier", from: json)
             testStatus = try xcRequired(element: "testStatus", from: json)
             duration = try xcRequired(element: "duration", from: json)
-            performanceMetrics = xcArray(element: "performanceMetrics", from: json).compactMap { ActionTestPerformanceMetricSummary($0) }
-            failureSummaries = xcArray(element: "failureSummaries", from: json).compactMap { ActionTestFailureSummary($0) }
-            activitySummaries = xcArray(element: "activitySummaries", from: json).compactMap { ActionTestActivitySummary($0) }
+            performanceMetrics = xcArray(element: "performanceMetrics", from: json)
+                .ofType(ActionTestPerformanceMetricSummary.self)
+            failureSummaries = xcArray(element: "failureSummaries", from: json)
+                .ofType(ActionTestFailureSummary.self)
+            activitySummaries = xcArray(element: "activitySummaries", from: json)
+                .ofType(ActionTestActivitySummary.self)
         } catch {
             debug("Error parsing ActionTestSummary: \(error.localizedDescription)")
             return nil
