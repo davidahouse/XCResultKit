@@ -28,7 +28,7 @@ public struct ActionTestFailureSummary: XCResultObject {
             lineNumber = try xcRequired(element: "lineNumber", from: json)
             isPerformanceFailure = try xcRequired(element: "isPerformanceFailure", from: json)
         } catch {
-            print("Error parsing ActionTestFailureSummary: \(error.localizedDescription)")
+            debug("Error parsing ActionTestFailureSummary: \(error.localizedDescription)")
             return nil
         }
     }

@@ -27,7 +27,7 @@ public struct TestFailureIssueSummary: XCResultObject {
             producingTarget = xcOptional(element: "producingTarget", from: json)
             documentLocationInCreatingWorkspace = xcOptional(element: "documentLocationInCreatingWorkspace", from: json)
         } catch {
-            print("Error parsing ResultMetrics: \(error.localizedDescription)")
+            debug("Error parsing ResultMetrics: \(error.localizedDescription)")
             return nil
         }
     }

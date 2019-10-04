@@ -24,7 +24,7 @@ public struct Reference: XCResultObject {
             id = try xcRequired(element: "id", from: json)
             targetType = xcOptional(element: "targetType", from: json)
         } catch {
-            print("Error parsing Reference: \(error.localizedDescription)")
+            debug("Error parsing Reference: \(error.localizedDescription)")
             return nil
         }
     }

@@ -21,7 +21,7 @@ public struct ActionTestPlanRunSummary: XCResultObject {
             name = try xcRequired(element: "name", from: json)
             testableSummaries = xcArray(element: "testableSummaries", from: json).compactMap { ActionTestableSummary($0) }
         } catch {
-            print("Error parsing ActionTestMetadata: \(error.localizedDescription)")
+            debug("Error parsing ActionTestMetadata: \(error.localizedDescription)")
             return nil
         }
     }

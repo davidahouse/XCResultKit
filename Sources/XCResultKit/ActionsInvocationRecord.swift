@@ -33,7 +33,7 @@ public struct ActionsInvocationRecord: XCResultObject {
             archive = xcOptional(element: "archive", from: json)
             actions = xcArray(element: "actions", from: json).compactMap { ActionRecord($0) }
         } catch {
-            print("Error parsing ActionsInvocationRecord: \(error.localizedDescription)")
+            debug("Error parsing ActionsInvocationRecord: \(error.localizedDescription)")
             return nil
         }
     }

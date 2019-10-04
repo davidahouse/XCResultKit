@@ -37,7 +37,7 @@ public struct ActionTestActivitySummary: XCResultObject {
             attachments = xcArray(element: "attachments", from: json).compactMap { ActionTestAttachment($0) }
             subactivities = xcArray(element: "subactivities", from: json).compactMap { ActionTestActivitySummary($0) }
         } catch {
-            print("Error parsing ActionTestActivitySummary: \(error.localizedDescription)")
+            debug("Error parsing ActionTestActivitySummary: \(error.localizedDescription)")
             return nil
         }
     }

@@ -45,7 +45,7 @@ public struct ActionTestPerformanceMetricSummary: XCResultObject {
             maxRegression = xcOptional(element: "maxRegression", from: json)
             maxStandardDeviation = xcOptional(element: "maxStandardDeviation", from: json)
         } catch {
-            print("Error parsing ActionTestPerformanceMetricSummary: \(error.localizedDescription)")
+            debug("Error parsing ActionTestPerformanceMetricSummary: \(error.localizedDescription)")
             return nil
         }
     }
