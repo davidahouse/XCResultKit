@@ -19,7 +19,7 @@ public struct TypeDefinition: XCResultObject {
         do {
             name = try xcRequired(element: "name", from: json)
         } catch {
-            print("Error parsing TypeDefinition: \(error.localizedDescription)")
+            debug("Error parsing TypeDefinition: \(error.localizedDescription)")
             return nil
         }
     }

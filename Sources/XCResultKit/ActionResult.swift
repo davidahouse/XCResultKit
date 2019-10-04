@@ -43,7 +43,7 @@ public struct ActionResult: XCResultObject {
             testsRef = xcOptional(element: "testsRef", from: json)
             diagnosticsRef = xcOptional(element: "diagnosticsRef", from: json)
         } catch {
-            print("Error parsing ActionResult: \(error.localizedDescription)")
+            debug("Error parsing ActionResult: \(error.localizedDescription)")
             return nil
         }
     }

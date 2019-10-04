@@ -26,9 +26,9 @@ public struct ActionTestFailureSummary: XCResultObject {
             message = xcOptional(element: "message", from: json)
             fileName = try xcRequired(element: "fileName", from: json)
             lineNumber = try xcRequired(element: "lineNumber", from: json)
-            isPerformanceFailure = try xcRequired(element: "isPerformanceFailure", from: json)
+            isPerformanceFailure = xcOptional(element: "isPerformanceFailure", from: json) ?? false
         } catch {
-            print("Error parsing ActionTestFailureSummary: \(error.localizedDescription)")
+            debug("Error parsing ActionTestFailureSummary: \(error.localizedDescription)")
             return nil
         }
     }

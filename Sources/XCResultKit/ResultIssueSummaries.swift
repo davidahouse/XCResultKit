@@ -21,9 +21,9 @@ public struct ResultIssueSummaries: XCResultObject {
     public let warningSummaries: [IssueSummary]
     
     public init?(_ json: [String: AnyObject]) {        
-        analyzerWarningSummaries = xcArray(element: "analyzerWarningSummaries", from: json).compactMap { IssueSummary($0) }
-        errorSummaries = xcArray(element: "errorSummaries", from: json).compactMap { IssueSummary($0) }
-        testFailureSummaries = xcArray(element: "testFailureSummaries", from: json).compactMap { TestFailureIssueSummary($0) }
-        warningSummaries = xcArray(element: "warningSummaries", from: json).compactMap { IssueSummary($0) }
+        analyzerWarningSummaries = xcArray(element: "analyzerWarningSummaries", from: json).ofType(IssueSummary.self)
+        errorSummaries = xcArray(element: "errorSummaries", from: json).ofType(IssueSummary.self)
+        testFailureSummaries = xcArray(element: "testFailureSummaries", from: json).ofType(TestFailureIssueSummary.self)
+        warningSummaries = xcArray(element: "warningSummaries", from: json).ofType(IssueSummary.self)
     }
 }
