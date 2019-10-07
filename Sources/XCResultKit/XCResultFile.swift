@@ -64,6 +64,28 @@ public class XCResultFile {
             return nil
         }
     }
+
+    public func getLogs(id: String) -> ActivityLogSection? {
+        guard let getOutput = shell(command: ["-l", "-c", "xcrun xcresulttool get --path \(url.path) --id \(id) --format json"]) else {
+            return nil
+        }
+
+        do {
+            guard let data = getOutput.data(using: .utf8) else {
+                debug("Unable to turn string into data, must not be a utf8 string")
+                return nil
+            }
+            guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
+                debug("Expecting top level dictionary but didn't find one")
+                return nil
+            }
+
+            return ActivityLogSection(rootJSON)
+        } catch {
+            debug("Error deserializing JSON: \(error)")
+            return nil
+        }
+    }
     
     public func getActionTestSummary(id: String) -> ActionTestSummary? {
         
