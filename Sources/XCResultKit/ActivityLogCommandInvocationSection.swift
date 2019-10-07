@@ -30,7 +30,7 @@ public struct ActivityLogCommandInvocationSection: XCResultObject {
     public let warningMessage: [ActivityLogAnalyzerWarningMessage]
 
     public let commandDetails: String
-    public let emittedOutput: String
+    public let emittedOutput: String?
     public let exitCode: Int?
 
     public init?(_ json: [String : AnyObject]) {
@@ -56,7 +56,7 @@ public struct ActivityLogCommandInvocationSection: XCResultObject {
                 .ofType(ActivityLogAnalyzerWarningMessage.self)
 
             commandDetails = try xcRequired(element: "commandDetails", from: json)
-            emittedOutput = try xcRequired(element: "emittedOutput", from: json)
+            emittedOutput = xcOptional(element: "emittedOutput", from: json)
             exitCode = xcOptional(element: "exitCode", from: json)
         } catch {
             debug("Error parsing ActivityLogCommandInvocationSection: \(error.localizedDescription)")
