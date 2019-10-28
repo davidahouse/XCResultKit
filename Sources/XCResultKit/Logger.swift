@@ -10,6 +10,8 @@ import Foundation
 /// Log message only in debug environment
 func debug(_ message: String) {
     #if DEBUG
-        print(message)
+        if let data = "\(message)\n".data(using: .utf8) {
+            FileHandle.standardError.write(data)
+        }
     #endif
 }
