@@ -17,7 +17,7 @@ public class XCResultFile {
     
     public func getInvocationRecord() -> ActionsInvocationRecord? {
         
-        guard let getOutput = shell(command: ["-l", "-c", "xcrun xcresulttool get --path \(url.path) --format json"]) else {
+        guard let getOutput = xcrun(["xcresulttool", "get", "--path", url.path, "--format", "json"]) else {
             return nil
         }
         
@@ -42,7 +42,7 @@ public class XCResultFile {
     
     public func getTestPlanRunSummaries(id: String) -> ActionTestPlanRunSummaries? {
         
-        guard let getOutput = shell(command: ["-l", "-c", "xcrun xcresulttool get --path \(url.path) --id \(id) --format json"]) else {
+        guard let getOutput = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
             return nil
         }
         
@@ -66,7 +66,7 @@ public class XCResultFile {
     }
 
     public func getLogs(id: String) -> ActivityLogSection? {
-        guard let getOutput = shell(command: ["-l", "-c", "xcrun xcresulttool get --path \(url.path) --id \(id) --format json"]) else {
+        guard let getOutput = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
             return nil
         }
 
@@ -89,7 +89,7 @@ public class XCResultFile {
     
     public func getActionTestSummary(id: String) -> ActionTestSummary? {
         
-        guard let getOutput = shell(command: ["-l", "-c", "xcrun xcresulttool get --path \(url.path) --id \(id) --format json"]) else {
+        guard let getOutput = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
             return nil
         }
         
@@ -114,7 +114,7 @@ public class XCResultFile {
     
     public func getPayload(id: String) -> Data? {
         
-        guard let getOutput = shell(command: ["-l", "-c", "xcrun xcresulttool get --path \(url.path) --id \(id)"]) else {
+        guard let getOutput = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id]) else {
             return nil
         }
         
@@ -128,13 +128,13 @@ public class XCResultFile {
     public func exportPayload(id: String) -> URL? {
         
         let tempPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(id)
-        _ = shell(command: ["-l", "-c", "xcrun xcresulttool export --type file --path \(url.path) --id \(id) --output-path \(tempPath.path)"])
+        _ = xcrun(["xcresulttool", "export", "--type", "file", "--path", url.path, "--id", id, "--output-path", tempPath.path])
         return tempPath
     }
     
     public func getCodeCoverage() -> CodeCoverage? {
         
-        guard let getOutput = shell(command: ["-l", "-c", "xcrun xccov view --report --json \(url.path)"]) else {
+        guard let getOutput = xcrun(["xccov", "view", "--report", "--json", url.path]) else {
             return nil
         }
         
@@ -152,10 +152,10 @@ public class XCResultFile {
         }
     }
     
-    private func shell(command: [String]) -> String? {
+    private func xcrun(_ arguments: [String]) -> String? {
         let task = Process()
-        task.launchPath = "/bin/sh"
-        task.arguments = command
+        task.launchPath = "/usr/bin/xcrun"
+        task.arguments = arguments
         
         let pipe = Pipe()
         task.standardOutput = pipe
