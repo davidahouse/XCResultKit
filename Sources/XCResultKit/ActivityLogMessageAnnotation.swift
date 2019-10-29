@@ -22,7 +22,7 @@ public struct ActivityLogMessageAnnotation: XCResultObject {
             title = try xcRequired(element: "title", from: json)
             location = xcOptional(element: "location", from: json)
         } catch {
-            debug("Error parsing ActivityLogMessageAnnotation: \(error.localizedDescription)")
+            logError("Error parsing ActivityLogMessageAnnotation: \(error.localizedDescription)")
             return nil
         }
     }

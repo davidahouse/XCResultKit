@@ -45,7 +45,7 @@ public struct ActivityLogAnalyzerResultMessage: XCResultObject {
             resultType = xcOptional(element: "resultType", from: json)
             keyEventIndex = try xcRequired(element: "keyEventIndex", from: json)
         } catch {
-            debug("Error parsing ActivityLogAnalyzerResultMessage: \(error.localizedDescription)")
+            logError("Error parsing ActivityLogAnalyzerResultMessage: \(error.localizedDescription)")
             return nil
         }
     }

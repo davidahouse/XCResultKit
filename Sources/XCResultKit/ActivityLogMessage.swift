@@ -35,7 +35,7 @@ public struct ActivityLogMessage: XCResultObject {
             annotations = xcArray(element: "annotation", from: json)
                 .ofType(ActivityLogMessageAnnotation.self)
         } catch {
-            debug("Error parsing ActivityLogMessage: \(error.localizedDescription)")
+            logError("Error parsing ActivityLogMessage: \(error.localizedDescription)")
             return nil
         }
     }

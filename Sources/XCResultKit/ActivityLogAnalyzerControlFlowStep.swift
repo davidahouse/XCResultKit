@@ -37,7 +37,7 @@ public struct ActivityLogAnalyzerControlFlowStep: XCResultObject {
             edges = xcArray(element: "edges", from: json)
                 .ofType(ActivityLogAnalyzerControlFlowStepEdge.self)
         } catch {
-            debug("Error parsing ActivityLogAnalyzerControlFlowStep: \(error.localizedDescription)")
+            logError("Error parsing ActivityLogAnalyzerControlFlowStep: \(error.localizedDescription)")
             return nil
         }
     }

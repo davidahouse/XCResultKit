@@ -59,7 +59,7 @@ public struct ActivityLogCommandInvocationSection: XCResultObject {
             emittedOutput = xcOptional(element: "emittedOutput", from: json)
             exitCode = xcOptional(element: "exitCode", from: json)
         } catch {
-            debug("Error parsing ActivityLogCommandInvocationSection: \(error.localizedDescription)")
+            logError("Error parsing ActivityLogCommandInvocationSection: \(error.localizedDescription)")
             return nil
         }
     }

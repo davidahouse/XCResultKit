@@ -53,7 +53,7 @@ public struct ActivityLogMajorSection: XCResultObject {
 
             subtitle = try xcRequired(element: "subtitle", from: json)
         } catch {
-            debug("Error parsing ActivityLogTargetBuildSection: \(error.localizedDescription)")
+            logError("Error parsing ActivityLogTargetBuildSection: \(error.localizedDescription)")
             return nil
         }
     }

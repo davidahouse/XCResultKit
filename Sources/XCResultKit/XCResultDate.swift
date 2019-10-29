@@ -19,17 +19,17 @@ extension Date: XCResultObject {
     public init?(_ json: [String: AnyObject]) {
         // Ensure we have the correct type here
         guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "Date" else {
-            debug("Incorrect type, expecting Date")
+            logError("Incorrect type, expecting Date")
             return nil
         }
 
         guard let actualValue = json["_value"] as? NSString else {
-            debug("Unable to get date value")
+            logError("Unable to get date value")
             return nil
         }
 
         guard let date = Date.isoFormatter.date(from:actualValue as String) else {
-            debug("error parsing date: \(actualValue as String)")
+            logError("error parsing date: \(actualValue as String)")
             return nil
         }
 

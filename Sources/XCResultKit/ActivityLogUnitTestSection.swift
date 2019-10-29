@@ -74,7 +74,7 @@ public struct ActivityLogUnitTestSection: XCResultObject {
             runnablePath = xcOptional(element: "runnablePath", from: json)
             runnableUTI = xcOptional(element: "runnableUTI", from: json)
         } catch {
-            debug("Error parsing ActivityLogUnitTestSection: \(error.localizedDescription)")
+            logError("Error parsing ActivityLogUnitTestSection: \(error.localizedDescription)")
             return nil
         }
     }

@@ -31,7 +31,7 @@ public struct ActionRunDestinationRecord: XCResultObject {
             localComputerRecord = try xcRequired(element: "localComputerRecord", from: json)
             targetSDKRecord = try xcRequired(element: "targetSDKRecord", from: json)
         } catch {
-            debug("Error parsing ActionRunDestinationRecord: \(error.localizedDescription)")
+            logError("Error parsing ActionRunDestinationRecord: \(error.localizedDescription)")
             return nil
         }
     }

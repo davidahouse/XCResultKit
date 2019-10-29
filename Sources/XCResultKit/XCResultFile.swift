@@ -23,19 +23,19 @@ public class XCResultFile {
         
         do {
             guard let data = getOutput.data(using: .utf8) else {
-                debug("Unable to turn string into data, must not be a utf8 string")
+                logError("Unable to turn string into data, must not be a utf8 string")
                 return nil
             }
             
             guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
-                debug("Expecting top level dictionary but didn't find one")
+                logError("Expecting top level dictionary but didn't find one")
                 return nil
             }
             
             let invocation = ActionsInvocationRecord(rootJSON)
             return invocation
         } catch {
-            debug("Error deserializing JSON: \(error)")
+            logError("Error deserializing JSON: \(error)")
             return nil
         }
     }
@@ -48,19 +48,19 @@ public class XCResultFile {
         
         do {
             guard let data = getOutput.data(using: .utf8) else {
-                debug("Unable to turn string into data, must not be a utf8 string")
+                logError("Unable to turn string into data, must not be a utf8 string")
                 return nil
             }
             
             guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
-                debug("Expecting top level dictionary but didn't find one")
+                logError("Expecting top level dictionary but didn't find one")
                 return nil
             }
             
             let runSummaries = ActionTestPlanRunSummaries(rootJSON)
             return runSummaries
         } catch {
-            debug("Error deserializing JSON: \(error)")
+            logError("Error deserializing JSON: \(error)")
             return nil
         }
     }
@@ -72,17 +72,17 @@ public class XCResultFile {
 
         do {
             guard let data = getOutput.data(using: .utf8) else {
-                debug("Unable to turn string into data, must not be a utf8 string")
+                logError("Unable to turn string into data, must not be a utf8 string")
                 return nil
             }
             guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
-                debug("Expecting top level dictionary but didn't find one")
+                logError("Expecting top level dictionary but didn't find one")
                 return nil
             }
 
             return ActivityLogSection(rootJSON)
         } catch {
-            debug("Error deserializing JSON: \(error)")
+            logError("Error deserializing JSON: \(error)")
             return nil
         }
     }
@@ -95,19 +95,19 @@ public class XCResultFile {
         
         do {
             guard let data = getOutput.data(using: .utf8) else {
-                debug("Unable to turn string into data, must not be a utf8 string")
+                logError("Unable to turn string into data, must not be a utf8 string")
                 return nil
             }
             
             guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
-                debug("Expecting top level dictionary but didn't find one")
+                logError("Expecting top level dictionary but didn't find one")
                 return nil
             }
             
             let summary = ActionTestSummary(rootJSON)
             return summary
         } catch {
-            debug("Error deserializing JSON: \(error)")
+            logError("Error deserializing JSON: \(error)")
             return nil
         }
     }
@@ -119,7 +119,7 @@ public class XCResultFile {
         }
         
         guard let data = getOutput.data(using: .utf8) else {
-            debug("Unable to turn string into data, must not be a utf8 string")
+            logError("Unable to turn string into data, must not be a utf8 string")
             return nil
         }
         return data
@@ -140,14 +140,14 @@ public class XCResultFile {
         
         do {
             guard let data = getOutput.data(using: .utf8) else {
-                debug("Unable to turn string into data, must not be a utf8 string")
+                logError("Unable to turn string into data, must not be a utf8 string")
                 return nil
             }
             
             let decoded = try JSONDecoder().decode(CodeCoverage.self, from: data)
             return decoded
         } catch {
-            debug("Error deserializing JSON: \(error)")
+            logError("Error deserializing JSON: \(error)")
             return nil
         }
     }
