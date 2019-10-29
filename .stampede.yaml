@@ -1,0 +1,16 @@
+pullrequests:
+  tasks:
+    - id: pr-standards
+      config:
+        prMilestoneCheck: true
+        prBodyCheck: true
+pullrequestedit:
+  tasks:
+    - id: pr-standards
+      config:
+        prMilestoneCheck: true
+        prBodyCheck: true
+releases:
+  published:
+    tasks:
+      - id: release-notes
