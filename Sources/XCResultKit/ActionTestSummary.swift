@@ -31,7 +31,7 @@ public struct ActionTestSummary: XCResultObject {
             name = try xcRequired(element: "name", from: json)
             identifier = try xcRequired(element: "identifier", from: json)
             testStatus = try xcRequired(element: "testStatus", from: json)
-            duration = try xcRequired(element: "duration", from: json)
+            duration = xcOptional(element: "duration", from: json) ?? 0
             performanceMetrics = xcArray(element: "performanceMetrics", from: json)
                 .ofType(ActionTestPerformanceMetricSummary.self)
             failureSummaries = xcArray(element: "failureSummaries", from: json)
