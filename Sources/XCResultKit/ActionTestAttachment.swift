@@ -41,7 +41,7 @@ public struct ActionTestAttachment: XCResultObject {
             payloadRef = xcOptional(element: "payloadRef", from: json)
             payloadSize = try xcRequired(element: "payloadSize", from: json)
         } catch {
-            debug("Error parsing ActionTestAttachment: \(error.localizedDescription)")
+            logError("Error parsing ActionTestAttachment: \(error.localizedDescription)")
             return nil
         }
     }

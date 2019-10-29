@@ -39,7 +39,7 @@ public struct ActionTestSummary: XCResultObject {
             activitySummaries = xcArray(element: "activitySummaries", from: json)
                 .ofType(ActionTestActivitySummary.self)
         } catch {
-            debug("Error parsing ActionTestSummary: \(error.localizedDescription)")
+            logError("Error parsing ActionTestSummary: \(error.localizedDescription)")
             return nil
         }
     }

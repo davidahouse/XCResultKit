@@ -69,7 +69,7 @@ public struct ActionDeviceRecord: XCResultObject {
             logicalCPUCoresPerPackage = xcOptional(element: "logicalCPUCoresPerPackage", from: json)
             platformRecord = try xcRequired(element: "platformRecord", from: json)
         } catch {
-            debug("Error parsing ActionDeviceRecord: \(error.localizedDescription)")
+            logError("Error parsing ActionDeviceRecord: \(error.localizedDescription)")
             return nil
         }
     }

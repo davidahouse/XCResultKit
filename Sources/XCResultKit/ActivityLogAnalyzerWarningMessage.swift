@@ -29,7 +29,7 @@ public struct ActivityLogAnalyzerWarningMessage: XCResultObject {
             annotations = xcArray(element: "annotation", from: json)
                 .ofType(ActivityLogMessageAnnotation.self)
         } catch {
-            debug("Error parsing ActivityLogAnalyzerWarningMessage: \(error.localizedDescription)")
+            logError("Error parsing ActivityLogAnalyzerWarningMessage: \(error.localizedDescription)")
             return nil
         }
     }

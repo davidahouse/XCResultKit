@@ -21,7 +21,7 @@ public struct ActionTestPlanRunSummary: XCResultObject {
             name = try xcRequired(element: "name", from: json)
             testableSummaries = xcArray(element: "testableSummaries", from: json).ofType(ActionTestableSummary.self)
         } catch {
-            debug("Error parsing ActionTestPlanRunSummary: \(error.localizedDescription)")
+            logError("Error parsing ActionTestPlanRunSummary: \(error.localizedDescription)")
             return nil
         }
     }

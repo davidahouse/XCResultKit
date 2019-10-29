@@ -8,7 +8,7 @@
 import Foundation
 
 /// Log message only in debug environment
-func debug(_ message: String) {
+func logError(_ message: String) {
     #if DEBUG
         if let data = "\(message)\n".data(using: .utf8) {
             FileHandle.standardError.write(data)

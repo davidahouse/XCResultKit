@@ -36,7 +36,7 @@ public struct ActivityLogAnalyzerEventStep: XCResultObject {
             description = try xcRequired(element: "description", from: json)
             callDepth = try xcRequired(element: "callDepth", from: json)
         } catch {
-            debug("Error parsing ActivityLogAnalyzerEventStep: \(error.localizedDescription)")
+            logError("Error parsing ActivityLogAnalyzerEventStep: \(error.localizedDescription)")
             return nil
         }
     }

@@ -12,12 +12,12 @@ extension String: XCResultObject {
     public init?(_ json: [String: AnyObject]) {
         // Ensure we have the correct type here
         guard let type = json["_type"] as? [String: AnyObject], let name = type["_name"] as? String, name == "String" else {
-            debug("Incorrect type, expecting String")
+            logError("Incorrect type, expecting String")
             return nil
         }
 
         guard let actualValue = json["_value"] as? NSString else {
-            debug("Unable to get string value")
+            logError("Unable to get string value")
             return nil
         }
 

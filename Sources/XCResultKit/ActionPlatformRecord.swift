@@ -21,7 +21,7 @@ public struct ActionPlatformRecord: XCResultObject {
             identifier = try xcRequired(element: "identifier", from: json)
             userDescription = try xcRequired(element: "userDescription", from: json)
         } catch {
-            debug("Error parsing ActionPlatformRecord: \(error.localizedDescription)")
+            logError("Error parsing ActionPlatformRecord: \(error.localizedDescription)")
             return nil
         }
     }

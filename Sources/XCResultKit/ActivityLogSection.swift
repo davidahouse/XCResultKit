@@ -54,7 +54,7 @@ public struct ActivityLogSection: XCResultObject {
             warningMessage = xcArray(element: "messages", from: json)
                 .ofType(ActivityLogAnalyzerWarningMessage.self)
         } catch {
-            debug("Error parsing ActivityLogSection: \(error.localizedDescription)")
+            logError("Error parsing ActivityLogSection: \(error.localizedDescription)")
             return nil
         }
     }

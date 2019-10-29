@@ -28,7 +28,7 @@ public struct ActionTestFailureSummary: XCResultObject {
             lineNumber = xcOptional(element: "lineNumber", from: json) ?? 0
             isPerformanceFailure = xcOptional(element: "isPerformanceFailure", from: json) ?? false
         } catch {
-            debug("Error parsing ActionTestFailureSummary: \(error.localizedDescription)")
+            logError("Error parsing ActionTestFailureSummary: \(error.localizedDescription)")
             return nil
         }
     }

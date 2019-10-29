@@ -28,7 +28,7 @@ public struct IssueSummary: XCResultObject {
             producingTarget = xcOptional(element: "producingTarget", from: json)
             documentLocationInCreatingWorkspace = xcOptional(element: "documentLocationInCreatingWorkspace", from: json)
         } catch {
-            debug("Error parsing IssueSummary: \(error.localizedDescription)")
+            logError("Error parsing IssueSummary: \(error.localizedDescription)")
             return nil
         }
     }

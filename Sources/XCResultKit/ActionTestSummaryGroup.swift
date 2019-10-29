@@ -30,7 +30,7 @@ public struct ActionTestSummaryGroup: XCResultObject {
             subtests = xcArray(element: "subtests", from: json)
                 .ofType(ActionTestMetadata.self)
         } catch {
-            debug("Error parsing ActionTestSummaryGroup: \(error.localizedDescription)")
+            logError("Error parsing ActionTestSummaryGroup: \(error.localizedDescription)")
             return nil
         }
     }

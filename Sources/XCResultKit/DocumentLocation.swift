@@ -22,7 +22,7 @@ public struct DocumentLocation: XCResultObject {
             url = try xcRequired(element: "url", from: json)
             concreteTypeName = try xcRequired(element: "concreteTypeName", from: json)
         } catch {
-            debug("Error parsing DocumentLocation: \(error.localizedDescription)")
+            logError("Error parsing DocumentLocation: \(error.localizedDescription)")
             return nil
         }
     }
