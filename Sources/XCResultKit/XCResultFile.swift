@@ -163,7 +163,9 @@ public class XCResultFile {
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output: String? = String(data: data, encoding: String.Encoding.utf8)
-        
+
+        task.waitUntilExit()
+
         return output
     }
 }
