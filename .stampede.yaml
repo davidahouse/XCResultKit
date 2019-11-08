@@ -1,3 +1,6 @@
+# ----------------------
+# stampede ca configuration
+#
 # tasks that run when a PR is created or a new commit pushed
 pullrequests:
   tasks:
