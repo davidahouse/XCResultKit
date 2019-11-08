@@ -1,3 +1,4 @@
+# tasks that run when a PR is created or a new commit pushed
 pullrequests:
   tasks:
     - id: pr-standards
@@ -7,12 +8,14 @@ pullrequests:
     - id: swiftlint
       config:
         projectFolder: .
+# tasks that run when a PR is edited
 pullrequestedit:
   tasks:
     - id: pr-standards
       config:
         prMilestoneCheck: true
         prBodyCheck: true
+# tasks that run when a release is created in GitHub
 releases:
   published:
     tasks:
