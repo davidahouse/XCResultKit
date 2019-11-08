@@ -4,6 +4,9 @@ pullrequests:
       config:
         prMilestoneCheck: true
         prBodyCheck: true
+    - id: swiftlint
+      config:
+        projectFolder: .
 pullrequestedit:
   tasks:
     - id: pr-standards
