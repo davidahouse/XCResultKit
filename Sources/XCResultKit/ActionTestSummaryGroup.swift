@@ -20,7 +20,7 @@ public struct ActionTestSummaryGroup: XCResultObject {
     public let subtestGroups: [ActionTestSummaryGroup]
     public let subtests: [ActionTestMetadata]
     
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             name = try xcRequired(element: "name", from: json)
             identifier = try xcRequired(element: "identifier", from: json)

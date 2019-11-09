@@ -28,7 +28,7 @@ public struct ActivityLogAnalyzerControlFlowStep: XCResultObject {
     public let endLocation: DocumentLocation?
     public let edges: [ActivityLogAnalyzerControlFlowStepEdge]
 
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             parentIndex = try xcRequired(element: "parentIndex", from: json)
             title = try xcRequired(element: "title", from: json)

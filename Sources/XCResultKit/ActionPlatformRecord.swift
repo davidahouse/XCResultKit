@@ -16,7 +16,7 @@ public struct ActionPlatformRecord: XCResultObject {
     public let identifier: String
     public let userDescription: String
     
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             identifier = try xcRequired(element: "identifier", from: json)
             userDescription = try xcRequired(element: "userDescription", from: json)

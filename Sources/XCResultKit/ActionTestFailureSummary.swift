@@ -20,7 +20,7 @@ public struct ActionTestFailureSummary: XCResultObject {
     public let lineNumber: Int
     public let isPerformanceFailure: Bool
     
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         
         do {
             message = xcOptional(element: "message", from: json)

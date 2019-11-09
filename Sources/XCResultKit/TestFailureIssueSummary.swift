@@ -19,7 +19,7 @@ public struct TestFailureIssueSummary: XCResultObject {
     public let producingTarget: String?
     public let documentLocationInCreatingWorkspace: DocumentLocation?
     
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             testCaseName = try xcRequired(element: "testCaseName", from: json)
             issueType = try xcRequired(element: "issueType", from: json)

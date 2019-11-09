@@ -28,7 +28,7 @@ public struct ActivityLogAnalyzerEventStep: XCResultObject {
     public let description: String
     public let callDepth: Int
 
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             parentIndex = try xcRequired(element: "parentIndex", from: json)
             title = try xcRequired(element: "title", from: json)

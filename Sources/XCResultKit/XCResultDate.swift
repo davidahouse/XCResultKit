@@ -28,7 +28,7 @@ extension Date: XCResultObject {
             return nil
         }
 
-        guard let date = Date.isoFormatter.date(from:actualValue as String) else {
+        guard let date = Date.isoFormatter.date(from: actualValue as String) else {
             logError("error parsing date: \(actualValue as String)")
             return nil
         }

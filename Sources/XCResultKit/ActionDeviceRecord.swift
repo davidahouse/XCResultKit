@@ -48,7 +48,7 @@ public struct ActionDeviceRecord: XCResultObject {
     public let logicalCPUCoresPerPackage: Int?
     public let platformRecord: ActionPlatformRecord
     
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             name = try xcRequired(element: "name", from: json)
             isConcreteDevice = try xcRequired(element: "isConcreteDevice", from: json)

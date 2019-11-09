@@ -22,7 +22,7 @@ public struct ActionRunDestinationRecord: XCResultObject {
     public let localComputerRecord: ActionDeviceRecord
     public let targetSDKRecord: ActionSDKRecord
     
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         
         do {
             displayName = try xcRequired(element: "displayName", from: json)

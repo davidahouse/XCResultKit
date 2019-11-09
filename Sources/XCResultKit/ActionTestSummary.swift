@@ -26,7 +26,7 @@ public struct ActionTestSummary: XCResultObject {
     public let failureSummaries: [ActionTestFailureSummary]
     public let activitySummaries: [ActionTestActivitySummary]
 
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             name = try xcRequired(element: "name", from: json)
             identifier = try xcRequired(element: "identifier", from: json)

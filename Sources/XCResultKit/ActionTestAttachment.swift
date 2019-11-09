@@ -23,14 +23,13 @@ public struct ActionTestAttachment: XCResultObject {
     public let uniformTypeIdentifier: String
     public let name: String?
     public let timestamp: Date?
-    // TODO: userInfo
     public let lifetime: String
     public let inActivityIdentifier: Int
     public let filename: String?
     public let payloadRef: Reference?
     public let payloadSize: Int
 
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             uniformTypeIdentifier = try xcRequired(element: "uniformTypeIdentifier", from: json)
             name = xcOptional(element: "name", from: json)
