@@ -33,7 +33,7 @@ public struct ActivityLogCommandInvocationSection: XCResultObject {
     public let emittedOutput: String?
     public let exitCode: Int?
 
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             domainType = try xcRequired(element: "domainType", from: json)
             title = try xcRequired(element: "title", from: json)
