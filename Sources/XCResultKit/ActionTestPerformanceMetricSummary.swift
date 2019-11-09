@@ -32,7 +32,7 @@ public struct ActionTestPerformanceMetricSummary: XCResultObject {
     public let maxRegression: Double?
     public let maxStandardDeviation: Double?
 
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             displayName = try xcRequired(element: "displayName", from: json)
             unitOfMeasurement = try xcRequired(element: "unitOfMeasurement", from: json)

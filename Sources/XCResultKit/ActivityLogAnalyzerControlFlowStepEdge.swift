@@ -17,7 +17,7 @@ public struct ActivityLogAnalyzerControlFlowStepEdge: XCResultObject {
     public let startLocation: DocumentLocation?
     public let endLocation: DocumentLocation?
 
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         startLocation = xcOptional(element: "startLocation", from: json)
         endLocation = xcOptional(element: "endLocation", from: json)
     }

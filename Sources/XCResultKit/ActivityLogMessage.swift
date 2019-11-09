@@ -25,7 +25,7 @@ public struct ActivityLogMessage: XCResultObject {
     public let location: DocumentLocation
     public let annotations: [ActivityLogMessageAnnotation]
 
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             type = try xcRequired(element: "type", from: json)
             title = try xcRequired(element: "title", from: json)

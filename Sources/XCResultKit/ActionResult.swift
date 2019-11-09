@@ -48,4 +48,3 @@ public struct ActionResult: XCResultObject {
         }
     }
 }
-

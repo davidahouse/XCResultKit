@@ -27,7 +27,7 @@ public struct ActionTestMetadata: XCResultObject {
     public let failureSummariesCount: Int?
     public let activitySummariesCount: Int?
     
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             name = try xcRequired(element: "name", from: json)
             identifier = try xcRequired(element: "identifier", from: json)

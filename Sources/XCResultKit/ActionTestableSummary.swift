@@ -29,7 +29,7 @@ public struct ActionTestableSummary: XCResultObject {
     public let testLanguage: String?
     public let testRegion: String?
     
-    public init?(_ json: [String : AnyObject]) {        
+    public init?(_ json: [String: AnyObject]) {        
         projectRelativePath = xcOptional(element: "projectRelativePath", from: json)
         targetName = xcOptional(element: "targetName", from: json)
         testKind = xcOptional(element: "testKind", from: json)

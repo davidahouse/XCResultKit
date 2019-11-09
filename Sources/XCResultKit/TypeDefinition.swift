@@ -15,7 +15,7 @@ import Foundation
 public struct TypeDefinition: XCResultObject {
     public let name: String
     
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             name = try xcRequired(element: "name", from: json)
         } catch {

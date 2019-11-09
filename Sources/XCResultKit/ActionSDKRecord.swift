@@ -20,7 +20,7 @@ public struct ActionSDKRecord: XCResultObject {
     public let operatingSystemVersion: String
     public let isInternal: Bool?
 
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             name = try xcRequired(element: "name", from: json)
             identifier = try xcRequired(element: "identifier", from: json)

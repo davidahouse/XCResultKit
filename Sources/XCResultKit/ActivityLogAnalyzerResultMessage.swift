@@ -28,7 +28,7 @@ public struct ActivityLogAnalyzerResultMessage: XCResultObject {
     public let resultType: String?
     public let keyEventIndex: Int
 
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             type = try xcRequired(element: "type", from: json)
             title = try xcRequired(element: "title", from: json)

@@ -16,7 +16,7 @@ public struct DocumentLocation: XCResultObject {
     public let url: String
     public let concreteTypeName: String
     
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         
         do {
             url = try xcRequired(element: "url", from: json)

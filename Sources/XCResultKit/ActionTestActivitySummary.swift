@@ -27,7 +27,7 @@ public struct ActionTestActivitySummary: XCResultObject {
     public let attachments: [ActionTestAttachment]
     public let subactivities: [ActionTestActivitySummary]
 
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             title = try xcRequired(element: "title", from: json)
             activityType = try xcRequired(element: "activityType", from: json)
