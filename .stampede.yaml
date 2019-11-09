@@ -12,6 +12,9 @@ pullrequests:
     - id: swiftlint
       config:
         projectFolder: .
+    - id: swift-package-test
+      config:
+        projectFolder: .
 # tasks that run when a PR is edited
 pullrequestedit:
   tasks:
