@@ -32,7 +32,7 @@ public struct ActivityLogSection: XCResultObject {
     public let resultMessages: [ActivityLogAnalyzerResultMessage]
     public let warningMessage: [ActivityLogAnalyzerWarningMessage]
 
-    public init?(_ json: [String : AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         do {
             domainType = try xcRequired(element: "domainType", from: json)
             title = try xcRequired(element: "title", from: json)
