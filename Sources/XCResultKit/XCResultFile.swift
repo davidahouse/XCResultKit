@@ -153,19 +153,21 @@ public class XCResultFile {
     }
     
     private func xcrun(_ arguments: [String]) -> String? {
-        let task = Process()
-        task.launchPath = "/usr/bin/xcrun"
-        task.arguments = arguments
-        
-        let pipe = Pipe()
-        task.standardOutput = pipe
-        task.launch()
-        
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output: String? = String(data: data, encoding: String.Encoding.utf8)
+        autoreleasepool {
+            let task = Process()
+            task.launchPath = "/usr/bin/xcrun"
+            task.arguments = arguments
+            
+            let pipe = Pipe()
+            task.standardOutput = pipe
+            task.launch()
+            
+            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            let output: String? = String(data: data, encoding: String.Encoding.utf8)
 
-        task.waitUntilExit()
+            task.waitUntilExit()
 
-        return output
+            return output
+        }
     }
 }
