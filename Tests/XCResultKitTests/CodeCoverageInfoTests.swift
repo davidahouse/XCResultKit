@@ -79,4 +79,15 @@ final class CodeCoverageTests: XCTestCase {
         }
     }
     """
+    
+    func testInitializers() {
+        let codeCoverageFile = CodeCoverageFile(coveredLines: 5, lineCoverage: 0.5, path: "fooPath", name: "bar.swift", executableLines: 10)
+        XCTAssertEqual(codeCoverageFile.coveredLines, 5)
+        XCTAssertEqual(codeCoverageFile.lineCoverage, 0.5)
+        XCTAssertEqual(codeCoverageFile.path, "fooPath")
+        XCTAssertEqual(codeCoverageFile.name, "bar.swift")
+        XCTAssertEqual(codeCoverageFile.executableLines, 10)
+        let codeCoverageFile2 = CodeCoverageFile(coveredLines: 3, lineCoverage: 0.5, path: "fooPath2", name: "bar2.swift", executableLines: 6)
+        
+    }
 }

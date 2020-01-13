@@ -34,6 +34,13 @@ public struct CodeCoverage: Codable {
         }
     }
     
+    public init(coveredLines: Int, lineCoverage: Double, executableLines: Int, targets: [CodeCoverageTarget]){
+        self.coveredLines = coveredLines
+        self.lineCoverage = lineCoverage
+        self.executableLines = executableLines
+        self.targets = targets
+    }
+    
     public func filesCoveredAdequately() -> [CodeCoverageFile] {
         var files: [CodeCoverageFile] = []
         for target in targets {
@@ -74,6 +81,15 @@ public struct CodeCoverageTarget: Codable {
     public let executableLines: Int
     public let buildProductPath: String
     public let files: [CodeCoverageFile]
+
+    public init(name: String,  buildProductPath: String, files: [CodeCoverageFile]){
+        self.name = name
+        self.coveredLines = coveredLines
+        self.lineCoverage = lineCoverage
+        self.executableLines = executableLines
+        self.buildProductPath = buildProductPath
+        self.files = files
+    }
 }
 
 public struct CodeCoverageFile: Codable {
@@ -82,4 +98,12 @@ public struct CodeCoverageFile: Codable {
     public let path: String
     public let name: String
     public let executableLines: Int
+    
+    public init(coveredLines: Int, lineCoverage: Double,  path: Stringname: String, executableLines: Int){
+        self.name = name
+        self.coveredLines = coveredLines
+        self.lineCoverage = lineCoverage
+        self.executableLines = executableLines
+        self.path = path
+    }
 }
