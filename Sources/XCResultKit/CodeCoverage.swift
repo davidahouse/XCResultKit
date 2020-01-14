@@ -35,7 +35,7 @@ public struct CodeCoverage: Codable {
         }
     }
     
-    public init(targets: [CodeCoverageTarget]){
+    public init(targets: [CodeCoverageTarget]) {
         coveredLines = targets.reduce(0) {$0 + $1.coveredLines}
         executableLines = targets.reduce(0) {$0 + $1.executableLines}
         lineCoverage = Double(coveredLines) / Double(executableLines)
@@ -83,7 +83,7 @@ public struct CodeCoverageTarget: Codable {
     public let buildProductPath: String
     public let files: [CodeCoverageFile]
 
-    public init(name: String,  buildProductPath: String, files: [CodeCoverageFile]){
+    public init(name: String, buildProductPath: String, files: [CodeCoverageFile]) {
         self.name = name
         self.files = files
         self.buildProductPath = buildProductPath
@@ -106,7 +106,7 @@ public struct CodeCoverageFile: Codable {
     public let name: String
     public let executableLines: Int
     
-    public init(coveredLines: Int, lineCoverage: Double,  path: String, name: String, executableLines: Int){
+    public init(coveredLines: Int, lineCoverage: Double, path: String, name: String, executableLines: Int) {
         self.name = name
         self.coveredLines = coveredLines
         self.lineCoverage = lineCoverage
