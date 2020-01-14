@@ -20,7 +20,7 @@ public struct CodeCoverage: Codable {
         targets = []
     }
     
-    public init(target: String, files: [CodeCoverageFile]) {        
+    public init(target: String, files: [CodeCoverageFile]) {
         if files.count > 0 {
             let target = CodeCoverageTarget(name: target, buildProductPath: "", files: files)
             coveredLines = target.coveredLines
