@@ -20,12 +20,13 @@ public struct CodeCoverage: Codable {
         targets = []
     }
     
-    public init(target: String, files: [CodeCoverageFile]) {
+    public init(target: String, files: [CodeCoverageFile]) {        
         if files.count > 0 {
-            coveredLines = files.reduce(0) {$0 + $1.coveredLines}
-            executableLines = files.reduce(0) {$0 + $1.executableLines}
-            lineCoverage = Double(coveredLines) / Double(executableLines)
-            targets = [CodeCoverageTarget(coveredLines: coveredLines, lineCoverage: lineCoverage, name: target, executableLines: executableLines, buildProductPath: "", files: files)]
+            let target = CodeCoverageTarget(name: target, buildProductPath: "", files: files)
+            coveredLines = target.coveredLines
+            lineCoverage = target.lineCoverage
+            executableLines = target.executableLines
+            targets = [target]
         } else {
             coveredLines = 0
             lineCoverage = 0.0
@@ -34,10 +35,10 @@ public struct CodeCoverage: Codable {
         }
     }
     
-    public init(coveredLines: Int, lineCoverage: Double, executableLines: Int, targets: [CodeCoverageTarget]){
-        self.coveredLines = coveredLines
-        self.lineCoverage = lineCoverage
-        self.executableLines = executableLines
+    public init(targets: [CodeCoverageTarget]){
+        coveredLines = targets.reduce(0) {$0 + $1.coveredLines}
+        executableLines = targets.reduce(0) {$0 + $1.executableLines}
+        lineCoverage = Double(coveredLines) / Double(executableLines)
         self.targets = targets
     }
     
@@ -84,11 +85,17 @@ public struct CodeCoverageTarget: Codable {
 
     public init(name: String,  buildProductPath: String, files: [CodeCoverageFile]){
         self.name = name
-        self.coveredLines = coveredLines
-        self.lineCoverage = lineCoverage
-        self.executableLines = executableLines
-        self.buildProductPath = buildProductPath
         self.files = files
+        self.buildProductPath = buildProductPath
+        if files.count > 0 {
+            coveredLines = files.reduce(0) {$0 + $1.coveredLines}
+            executableLines = files.reduce(0) {$0 + $1.executableLines}
+            lineCoverage = Double(coveredLines) / Double(executableLines)
+        } else {
+            coveredLines = 0
+            lineCoverage = 0.0
+            executableLines = 0
+        }
     }
 }
 
@@ -99,7 +106,7 @@ public struct CodeCoverageFile: Codable {
     public let name: String
     public let executableLines: Int
     
-    public init(coveredLines: Int, lineCoverage: Double,  path: Stringname: String, executableLines: Int){
+    public init(coveredLines: Int, lineCoverage: Double,  path: String, name: String, executableLines: Int){
         self.name = name
         self.coveredLines = coveredLines
         self.lineCoverage = lineCoverage

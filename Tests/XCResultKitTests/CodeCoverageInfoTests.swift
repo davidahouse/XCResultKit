@@ -89,5 +89,18 @@ final class CodeCoverageTests: XCTestCase {
         XCTAssertEqual(codeCoverageFile.executableLines, 10)
         let codeCoverageFile2 = CodeCoverageFile(coveredLines: 3, lineCoverage: 0.5, path: "fooPath2", name: "bar2.swift", executableLines: 6)
         
+        let codeCoverageTarget = CodeCoverageTarget(name: "MyCode.framework", buildProductPath: "buildPath", files: [codeCoverageFile, codeCoverageFile2])
+        XCTAssertEqual(codeCoverageTarget.name, "MyCode.framework")
+        XCTAssertEqual(codeCoverageTarget.buildProductPath, "buildPath")
+        XCTAssertEqual(codeCoverageTarget.coveredLines, 8)
+        XCTAssertEqual(codeCoverageTarget.executableLines, 16)
+        XCTAssertEqual(codeCoverageTarget.lineCoverage, 0.5)
+        
+        let codeCoverageFile3 = CodeCoverageFile(coveredLines: 4, lineCoverage: 0.25, path: "fooPath3", name: "bar3.swift", executableLines: 16)
+        let codeCoverageTarget2 = CodeCoverageTarget(name: "MyOtherCode.framework", buildProductPath: "buildPath", files: [codeCoverageFile3])
+        let codeCoverage = CodeCoverage(targets: [codeCoverageTarget, codeCoverageTarget2])
+        XCTAssertEqual(codeCoverage.coveredLines, 12)
+        XCTAssertEqual(codeCoverage.executableLines, 32)
+        XCTAssertEqual(codeCoverage.lineCoverage, 0.375)
     }
 }
