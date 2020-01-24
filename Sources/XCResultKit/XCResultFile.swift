@@ -17,16 +17,11 @@ public class XCResultFile {
     
     public func getInvocationRecord() -> ActionsInvocationRecord? {
         
-        guard let getOutput = xcrun(["xcresulttool", "get", "--path", url.path, "--format", "json"]) else {
+        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--format", "json"]) else {
             return nil
         }
         
         do {
-            guard let data = getOutput.data(using: .utf8) else {
-                logError("Unable to turn string into data, must not be a utf8 string")
-                return nil
-            }
-            
             guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
                 logError("Expecting top level dictionary but didn't find one")
                 return nil
@@ -42,16 +37,11 @@ public class XCResultFile {
     
     public func getTestPlanRunSummaries(id: String) -> ActionTestPlanRunSummaries? {
         
-        guard let getOutput = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
+        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
             return nil
         }
         
         do {
-            guard let data = getOutput.data(using: .utf8) else {
-                logError("Unable to turn string into data, must not be a utf8 string")
-                return nil
-            }
-            
             guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
                 logError("Expecting top level dictionary but didn't find one")
                 return nil
@@ -66,15 +56,11 @@ public class XCResultFile {
     }
 
     public func getLogs(id: String) -> ActivityLogSection? {
-        guard let getOutput = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
+        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
             return nil
         }
 
         do {
-            guard let data = getOutput.data(using: .utf8) else {
-                logError("Unable to turn string into data, must not be a utf8 string")
-                return nil
-            }
             guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
                 logError("Expecting top level dictionary but didn't find one")
                 return nil
@@ -89,16 +75,11 @@ public class XCResultFile {
     
     public func getActionTestSummary(id: String) -> ActionTestSummary? {
         
-        guard let getOutput = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
+        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
             return nil
         }
         
         do {
-            guard let data = getOutput.data(using: .utf8) else {
-                logError("Unable to turn string into data, must not be a utf8 string")
-                return nil
-            }
-            
             guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
                 logError("Expecting top level dictionary but didn't find one")
                 return nil
@@ -114,12 +95,7 @@ public class XCResultFile {
     
     public func getPayload(id: String) -> Data? {
         
-        guard let getOutput = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id]) else {
-            return nil
-        }
-        
-        guard let data = getOutput.data(using: .utf8) else {
-            logError("Unable to turn string into data, must not be a utf8 string")
+        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id]) else {
             return nil
         }
         return data
@@ -134,16 +110,11 @@ public class XCResultFile {
     
     public func getCodeCoverage() -> CodeCoverage? {
         
-        guard let getOutput = xcrun(["xccov", "view", "--report", "--json", url.path]) else {
+        guard let data = xcrun(["xccov", "view", "--report", "--json", url.path]) else {
             return nil
         }
-        
+
         do {
-            guard let data = getOutput.data(using: .utf8) else {
-                logError("Unable to turn string into data, must not be a utf8 string")
-                return nil
-            }
-            
             let decoded = try JSONDecoder().decode(CodeCoverage.self, from: data)
             return decoded
         } catch {
@@ -152,7 +123,7 @@ public class XCResultFile {
         }
     }
     
-    private func xcrun(_ arguments: [String]) -> String? {
+    private func xcrun(_ arguments: [String]) -> Data? {
         autoreleasepool {
             let task = Process()
             task.launchPath = "/usr/bin/xcrun"
@@ -163,11 +134,11 @@ public class XCResultFile {
             task.launch()
             
             let data = pipe.fileHandleForReading.readDataToEndOfFile()
-            let output: String? = String(data: data, encoding: String.Encoding.utf8)
 
             task.waitUntilExit()
 
-            return output
+            let taskSucceeded = task.terminationStatus == EXIT_SUCCESS
+            return taskSucceeded ? data : nil
         }
     }
 }
