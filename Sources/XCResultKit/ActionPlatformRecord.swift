@@ -12,7 +12,7 @@
 
 import Foundation
 
-public struct ActionPlatformRecord: XCResultObject {
+public struct ActionPlatformRecord: XCResultObject, Encodable {
     public let identifier: String
     public let userDescription: String
     
@@ -24,5 +24,16 @@ public struct ActionPlatformRecord: XCResultObject {
             logError("Error parsing ActionPlatformRecord: \(error.localizedDescription)")
             return nil
         }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case identifier
+        case userDescription
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(identifier, forKey: .identifier)
+        try container.encode(userDescription, forKey: .userDescription)
     }
 }
