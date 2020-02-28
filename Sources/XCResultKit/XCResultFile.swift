@@ -9,6 +9,12 @@ import Foundation
 
 public class XCResultFile {
     
+    private enum XCRunOutput {
+        case always
+        case onlyOnSuccess
+        case never
+    }
+    
     public let url: URL
     
     public init(url: URL) {
@@ -104,7 +110,7 @@ public class XCResultFile {
     public func exportPayload(id: String) -> URL? {
         
         let tempPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(id)
-        _ = xcrun(["xcresulttool", "export", "--type", "file", "--path", url.path, "--id", id, "--output-path", tempPath.path])
+        xcrun(["xcresulttool", "export", "--type", "file", "--path", url.path, "--id", id, "--output-path", tempPath.path], output: .never)
         return tempPath
     }
     
@@ -123,22 +129,34 @@ public class XCResultFile {
         }
     }
     
-    private func xcrun(_ arguments: [String]) -> Data? {
+    @discardableResult
+    private func xcrun(_ arguments: [String], output: XCRunOutput = .onlyOnSuccess) -> Data? {
         autoreleasepool {
             let task = Process()
             task.launchPath = "/usr/bin/xcrun"
             task.arguments = arguments
             
-            let pipe = Pipe()
-            task.standardOutput = pipe
-            task.launch()
+            var resultData: Data?
+            if output != .never {
+                let pipe = Pipe()
+                task.standardOutput = pipe
+                task.launch()
+                
+                resultData = pipe.fileHandleForReading.readDataToEndOfFile()
+            }
             
-            let data = pipe.fileHandleForReading.readDataToEndOfFile()
-
             task.waitUntilExit()
 
             let taskSucceeded = task.terminationStatus == EXIT_SUCCESS
-            return taskSucceeded ? data : nil
+            
+            switch output {
+            case .always:
+                return resultData
+            case .onlyOnSuccess:
+                return taskSucceeded ? resultData : nil
+            case .never:
+                return nil
+            }
         }
     }
 }
