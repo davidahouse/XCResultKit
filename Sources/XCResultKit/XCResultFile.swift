@@ -143,6 +143,8 @@ public class XCResultFile {
                 task.launch()
                 
                 resultData = pipe.fileHandleForReading.readDataToEndOfFile()
+            } else {
+                task.launch()
             }
             
             task.waitUntilExit()
