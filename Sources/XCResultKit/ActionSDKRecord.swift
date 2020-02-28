@@ -14,7 +14,7 @@
 
 import Foundation
 
-public struct ActionSDKRecord: XCResultObject {
+public struct ActionSDKRecord: XCResultObject, Encodable {
     public let name: String
     public let identifier: String
     public let operatingSystemVersion: String
@@ -30,5 +30,20 @@ public struct ActionSDKRecord: XCResultObject {
             logError("Error parsing ActionSDKRecord: \(error.localizedDescription)")
             return nil
         }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case identifier
+        case operatingSystemVersion
+        case isInternal
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(identifier, forKey: .identifier)
+        try container.encode(operatingSystemVersion, forKey: .operatingSystemVersion)
+        try container.encodeIfPresent(isInternal, forKey: .isInternal)
     }
 }
