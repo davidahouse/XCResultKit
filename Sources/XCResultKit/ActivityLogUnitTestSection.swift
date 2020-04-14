@@ -24,7 +24,7 @@ public struct ActivityLogUnitTestSection: XCResultObject {
     public let domainType: String
     public let title: String
     public let startTime: Date?
-    public let duration: Double
+    public let duration: Double?
     public let result: String?
     public let subsections: [ActivityLogMajorSection]
     public let unitTestSubsections: [ActivityLogUnitTestSection]
@@ -48,7 +48,7 @@ public struct ActivityLogUnitTestSection: XCResultObject {
             domainType = try xcRequired(element: "domainType", from: json)
             title = try xcRequired(element: "title", from: json)
             startTime = xcOptional(element: "startTime", from: json)
-            duration = try xcRequired(element: "duration", from: json)
+            duration = xcOptional(element: "duration", from: json)
             result = xcOptional(element: "result", from: json)
             subsections = xcArray(element: "subsections", from: json)
                 .ofType(ActivityLogMajorSection.self)
