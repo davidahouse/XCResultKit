@@ -21,6 +21,7 @@ public struct ResultMetrics: XCResultObject {
     public let testsCount: Int?
     public let testsFailedCount: Int?
     public let warningCount: Int?
+    public let testsSkippedCount: Int?
     
     public init?(_ json: [String: AnyObject]) {    
         analyzerWarningCount = xcOptional(element: "analyzerWarningCount", from: json)
@@ -28,5 +29,6 @@ public struct ResultMetrics: XCResultObject {
         testsCount = xcOptional(element: "testsCount", from: json)
         testsFailedCount = xcOptional(element: "testsFailedCount", from: json)
         warningCount = xcOptional(element: "warningCount", from: json)
+        testsSkippedCount = xcOptional(element: "testsSkippedCount", from: json)
     }
 }

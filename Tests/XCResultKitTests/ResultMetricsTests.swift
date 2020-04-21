@@ -12,15 +12,23 @@ import XCTest
 
 final class ResultMetricsTests: XCTestCase {
     
-    func testCanParseCorrectlyFormattedJSON() {
-        
-        let parsed = ResultMetrics(parse(resultMetricsJson))
-        XCTAssertNotNil(parsed)
-        XCTAssertEqual(parsed?.testsCount, 1)
+    func testCanParseCorrectlyFormattedJSON() throws {
+        let parsed = try XCTUnwrap(ResultMetrics(parse(resultMetricsJson)))
+        XCTAssertEqual(parsed.testsCount, 1)
+        XCTAssertEqual(parsed.testsFailedCount, nil)
+        XCTAssertEqual(parsed.testsSkippedCount, nil)
+    }
+
+    func testCanParseCorrectlyFormattedJSON2() throws {
+        let parsed = try XCTUnwrap(ResultMetrics(parse(resultMetricsJson2)))
+        XCTAssertEqual(parsed.testsCount, 10)
+        XCTAssertEqual(parsed.testsFailedCount, 4)
+        XCTAssertEqual(parsed.testsSkippedCount, 1)
     }
     
     static var allTests = [
         ("testCanParseCorrectlyFormattedJSON", testCanParseCorrectlyFormattedJSON),
+        ("testCanParseCorrectlyFormattedJSON2", testCanParseCorrectlyFormattedJSON2),
         ]
     
     private func parse(_ jsonData: String) -> [String: AnyObject] {
@@ -45,6 +53,32 @@ final class ResultMetricsTests: XCTestCase {
             "_name" : "ResultMetrics"
         },
         "testsCount" : {
+            "_type" : {
+                "_name" : "Int"
+            },
+            "_value" : "1"
+        }
+    }
+    """
+
+    let resultMetricsJson2 = """
+    {
+        "_type" : {
+            "_name" : "ResultMetrics"
+        },
+        "testsCount" : {
+            "_type" : {
+                "_name" : "Int"
+            },
+            "_value" : "10"
+        },
+        "testsFailedCount" : {
+            "_type" : {
+                "_name" : "Int"
+            },
+            "_value" : "4"
+        },
+        "testsSkippedCount" : {
             "_type" : {
                 "_name" : "Int"
             },
