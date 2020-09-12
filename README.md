@@ -5,6 +5,10 @@ access using the `xcresulttool` and `xccov` apps included in `Xcode 11`. Both of
 export to JSON options, and this package provides all the JSON parsing required to turn the data into
 objects you can use.
 
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fdavidahouse%2FXCResultKit%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/davidahouse/XCResultKit)
+
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fdavidahouse%2FXCResultKit%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/davidahouse/XCResultKit)
+
 ## XCResultFile
 
 This is the main entry point for using the package. Just create an instance of this object with the path
