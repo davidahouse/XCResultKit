@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>0EBE163A-644A-419D-92D8-957B0B912018</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>7665227E-8402-402D-9E86-2394DFAFD202</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_09-48-49--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633192529.196661</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>0EBE163A-644A-419D-92D8-957B0B912018</string>
+		</dict>
+		<key>2119E707-B8CA-4075-8F92-D86B16D0563F</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>778E5D5B-CAE4-4126-A0F6-9FB1B34B1B71</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_09-35-03--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>T</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633191703.34843004</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>2119E707-B8CA-4075-8F92-D86B16D0563F</string>
+		</dict>
+		<key>22FD0AE5-62A4-4A47-AF8D-4E5658E969EE</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>08B016C4-14A8-46B3-BF78-00D929464EE0</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_09-42-07--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>T</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633192127.53312004</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>22FD0AE5-62A4-4A47-AF8D-4E5658E969EE</string>
+		</dict>
+		<key>24D0D735-09C3-45CA-B089-0927F183D967</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>90EB7FFA-C66D-4E04-B2B3-D4CF09BB428B</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_09-37-55--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633191875.96857798</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>24D0D735-09C3-45CA-B089-0927F183D967</string>
+		</dict>
+		<key>28C8C405-24B6-4781-917A-279F72F5985E</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>EFD21368-A7AB-4D3C-BEAF-A245925C3C5E</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_08-58-18--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633189498.36201704</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>28C8C405-24B6-4781-917A-279F72F5985E</string>
+		</dict>
+		<key>5FE5C100-F747-48E0-83E2-115DB19D4D29</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>9D1CF737-211C-4B35-B805-3ABAC956F2F1</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_09-42-49--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>T</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633192169.95776403</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>5FE5C100-F747-48E0-83E2-115DB19D4D29</string>
+		</dict>
+		<key>63D5E104-A278-4FF7-B30C-3C8AAF6F44E9</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>04613FA4-DFF1-4AE0-B811-B5C0DC40CAC5</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_08-59-30--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633189570.24985099</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>63D5E104-A278-4FF7-B30C-3C8AAF6F44E9</string>
+		</dict>
+		<key>9087CBE5-7CEC-46DE-B535-477FD093A219</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>52B074E2-47DD-48C6-A632-1B2AD7F5A896</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_09-46-42--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>T</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633192402.80760896</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>9087CBE5-7CEC-46DE-B535-477FD093A219</string>
+		</dict>
+		<key>AC1CDB19-A7DA-4959-92D3-93D9130980AA</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>09DE1848-8A6D-4A73-9066-80A6037E9BD1</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_08-48-37--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>T</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633188917.36011505</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>AC1CDB19-A7DA-4959-92D3-93D9130980AA</string>
+		</dict>
+		<key>BC5A348D-DDFD-4011-8A24-7D7566E78E6F</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>A65F7035-E3A3-4847-A994-C384390EE08E</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_09-49-39--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>T</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633192579.74760401</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>BC5A348D-DDFD-4011-8A24-7D7566E78E6F</string>
+		</dict>
+		<key>D6BFFC69-2D6E-4C2B-9150-9B934A0159A5</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>1453EF49-750E-4E5B-8578-C4D66642DD32</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_08-55-50--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633189350.38487005</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>D6BFFC69-2D6E-4C2B-9150-9B934A0159A5</string>
+		</dict>
+		<key>E4DF01C2-2AE6-4B34-B12A-6D554EA61B1F</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>03E29B41-C028-4357-B036-7A8A9F0C194F</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_09-00-11--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>T</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633189611.94487405</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>E4DF01C2-2AE6-4B34-B12A-6D554EA61B1F</string>
+		</dict>
+		<key>E861C24C-44B5-4F59-A737-C61965EBA0DF</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>A252EE06-B7A1-4E3C-8AB6-A21B4155AD15</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_09-46-00--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633192360.02053297</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>E861C24C-44B5-4F59-A737-C61965EBA0DF</string>
+		</dict>
+		<key>FC5B9F9E-0E8D-415E-907E-FEECB7A68DDB</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>54CB3D63-5407-4046-A2E1-453654FD5ABC</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_09-32-47--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633191567.25579</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>FC5B9F9E-0E8D-415E-907E-FEECB7A68DDB</string>
+		</dict>
+		<key>FEB1FAF4-8A3F-4BE7-8C70-22DDBF1CD1A3</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>C1B99201-FD4B-4084-A351-A7356212AEE3</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-Copy of Stampede-2021.01.24_09-23-41--0500.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>T</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Stampede project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Copy of Stampede</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>0</integer>
+			<key>signature</key>
+			<string>Test Copy of Stampede</string>
+			<key>timeStartedRecording</key>
+			<real>633191021.70431495</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Test Copy of Stampede</string>
+			<key>uniqueIdentifier</key>
+			<string>FEB1FAF4-8A3F-4BE7-8C70-22DDBF1CD1A3</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

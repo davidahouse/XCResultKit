@@ -15,6 +15,7 @@ pullrequests:
     - id: swift-package-test
       config:
         projectFolder: .
+        xcodeVersion: Xcode.app
 # tasks that run when a PR is edited
 pullrequestedit:
   tasks:
