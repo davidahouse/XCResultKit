@@ -105,12 +105,23 @@ public struct CodeCoverageFile: Codable {
     public let path: String
     public let name: String
     public let executableLines: Int
+    public let functions: [CodeCoverageFileFunction]
     
-    public init(coveredLines: Int, lineCoverage: Double, path: String, name: String, executableLines: Int) {
+    public init(coveredLines: Int, lineCoverage: Double, path: String, name: String, executableLines: Int, functions: [CodeCoverageFileFunction]) {
         self.name = name
         self.coveredLines = coveredLines
         self.lineCoverage = lineCoverage
         self.executableLines = executableLines
         self.path = path
+        self.functions = functions
     }
+}
+
+public struct CodeCoverageFileFunction: Codable {
+    public let coveredLines: Int
+    public let lineCoverage: Double
+    public let lineNumber: Int
+    public let name: String
+    public let executableLines: Int
+    public let executionCount: Int
 }
