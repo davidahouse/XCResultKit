@@ -9,6 +9,16 @@ final class ActionTestSummaryTests: XCTestCase {
         XCTAssertNotNil(record)
         XCTAssertGreaterThan(record!.activitySummaries.count, 0)
     }
+    
+    func testCanParseRepetitionPolicy() throws {
+        let ats = try XCTUnwrap(ActionTestSummary(parse(actionTestSummaryWithRepetitionSummary)))
+        
+        let repetitionPolicy = try XCTUnwrap(ats.repetitionPolicySummary)
+        
+        XCTAssertEqual(repetitionPolicy.repetitionMode, .runRetryOnFailure)
+        XCTAssertEqual(repetitionPolicy.totalIterations, 2)
+        XCTAssertEqual(repetitionPolicy.iteration, 1)
+    }
 
     static var allTests = [
         ("testCanParseCorrectlyFormattedJSON", testCanParseCorrectlyFormattedJSON),
@@ -304,4 +314,248 @@ final class ActionTestSummaryTests: XCTestCase {
     }
 }
 """
+    
+    let actionTestSummaryWithRepetitionSummary = """
+{
+  "_type" : {
+    "_name" : "ActionTestSummary",
+    "_supertype" : {
+      "_name" : "ActionTestSummaryIdentifiableObject",
+      "_supertype" : {
+        "_name" : "ActionAbstractTestSummary"
+      }
+    }
+  },
+  "activitySummaries" : {
+    "_type" : {
+      "_name" : "Array"
+    },
+    "_values" : [
+      {
+        "_type" : {
+          "_name" : "ActionTestActivitySummary"
+        },
+        "activityType" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "com.apple.dt.xctest.activity-type.internal"
+        },
+        "finish" : {
+          "_type" : {
+            "_name" : "Date"
+          },
+          "_value" : "2021-12-21T13:29:05.712-0700"
+        },
+        "start" : {
+          "_type" : {
+            "_name" : "Date"
+          },
+          "_value" : "2021-12-21T13:29:05.690-0700"
+        },
+        "title" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "Start Test at 2021-12-21 13:29:05.690"
+        },
+        "uuid" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "7EFFB7B6-FE6C-4635-B47F-CCBDE6C940FF"
+        }
+      },
+      {
+        "_type" : {
+          "_name" : "ActionTestActivitySummary"
+        },
+        "activityType" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "com.apple.dt.xctest.activity-type.deletedAttachment"
+        },
+        "finish" : {
+          "_type" : {
+            "_name" : "Date"
+          },
+          "_value" : "2021-12-21T13:29:05.690-0700"
+        },
+        "start" : {
+          "_type" : {
+            "_name" : "Date"
+          },
+          "_value" : "2021-12-21T13:29:05.690-0700"
+        },
+        "title" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "Some screenshots were deleted because testing is configured to remove automatic screenshots on success."
+        },
+        "uuid" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "5A2D2FBF-973F-4C54-937B-680CFF6B5B45"
+        }
+      },
+      {
+        "_type" : {
+          "_name" : "ActionTestActivitySummary"
+        },
+        "activityType" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "com.apple.dt.xctest.activity-type.internal"
+        },
+        "finish" : {
+          "_type" : {
+            "_name" : "Date"
+          },
+          "_value" : "2021-12-21T13:29:05.714-0700"
+        },
+        "start" : {
+          "_type" : {
+            "_name" : "Date"
+          },
+          "_value" : "2021-12-21T13:29:05.713-0700"
+        },
+        "title" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "Set Up"
+        },
+        "uuid" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "5A63EA34-2CF4-47C3-8D73-78F69BCEB356"
+        }
+      },
+      {
+        "_type" : {
+          "_name" : "ActionTestActivitySummary"
+        },
+        "activityType" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "com.apple.dt.xctest.activity-type.userCreated"
+        },
+        "finish" : {
+          "_type" : {
+            "_name" : "Date"
+          },
+          "_value" : "2021-12-21T13:29:05.716-0700"
+        },
+        "start" : {
+          "_type" : {
+            "_name" : "Date"
+          },
+          "_value" : "2021-12-21T13:29:05.715-0700"
+        },
+        "title" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "Retryable Activity"
+        },
+        "uuid" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "BE88AAD4-3613-4AE8-8AEE-85DD3D09B2AC"
+        }
+      },
+      {
+        "_type" : {
+          "_name" : "ActionTestActivitySummary"
+        },
+        "activityType" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "com.apple.dt.xctest.activity-type.internal"
+        },
+        "finish" : {
+          "_type" : {
+            "_name" : "Date"
+          },
+          "_value" : "2021-12-21T13:29:05.717-0700"
+        },
+        "start" : {
+          "_type" : {
+            "_name" : "Date"
+          },
+          "_value" : "2021-12-21T13:29:05.716-0700"
+        },
+        "title" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "Tear Down"
+        },
+        "uuid" : {
+          "_type" : {
+            "_name" : "String"
+          },
+          "_value" : "5170EA32-DEE9-40A8-A87E-634EB7967081"
+        }
+      }
+    ]
+  },
+  "duration" : {
+    "_type" : {
+      "_name" : "Double"
+    },
+    "_value" : "0.041687965393066406"
+  },
+  "identifier" : {
+    "_type" : {
+      "_name" : "String"
+    },
+    "_value" : "RetryTests/testRetryOnFailure()"
+  },
+  "name" : {
+    "_type" : {
+      "_name" : "String"
+    },
+    "_value" : "testRetryOnFailure()"
+  },
+  "repetitionPolicySummary" : {
+    "_type" : {
+      "_name" : "ActionTestritionPolicySummary"
+    },
+    "iteration" : {
+      "_type" : {
+        "_name" : "Int"
+      },
+      "_value" : "1"
+    },
+    "repetitionMode" : {
+      "_type" : {
+        "_name" : "String"
+      },
+      "_value" : "RunRetryOnFailure"
+    },
+    "totalIterations" : {
+      "_type" : {
+        "_name" : "Int"
+      },
+      "_value" : "2"
+    }
+  },
+  "testStatus" : {
+    "_type" : {
+      "_name" : "String"
+    },
+    "_value" : "Success"
+  }
+}
+"""
+
 }
