@@ -25,6 +25,7 @@ public struct ActionTestSummary: XCResultObject {
     public let performanceMetrics: [ActionTestPerformanceMetricSummary]
     public let failureSummaries: [ActionTestFailureSummary]
     public let activitySummaries: [ActionTestActivitySummary]
+    public let repetitionPolicySummary: ActionTestRepetitionPolicySummary?
 
     public init?(_ json: [String: AnyObject]) {
         do {
@@ -38,6 +39,7 @@ public struct ActionTestSummary: XCResultObject {
                 .ofType(ActionTestFailureSummary.self)
             activitySummaries = xcArray(element: "activitySummaries", from: json)
                 .ofType(ActionTestActivitySummary.self)
+            repetitionPolicySummary = xcOptional(element: "repetitionPolicySummary", from: json)
         } catch {
             logError("Error parsing ActionTestSummary: \(error.localizedDescription)")
             return nil
