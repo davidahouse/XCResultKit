@@ -20,26 +20,27 @@ public class XCResultFile {
     public init(url: URL) {
         self.url = url
     }
-    
-    public func getInvocationRecord() -> ActionsInvocationRecord? {
-        
-        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--format", "json"]) else {
-            return nil
-        }
-        
-        do {
-            guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
-                logError("Expecting top level dictionary but didn't find one")
-                return nil
-            }
-            
-            let invocation = ActionsInvocationRecord(rootJSON)
-            return invocation
-        } catch {
-            logError("Error deserializing JSON: \(error)")
-            return nil
-        }
-    }
+
+    // TODO: Previously we looked to the ActionInvocationRecord to find things. What now???
+//    public func getInvocationRecord() -> ActionsInvocationRecord? {
+//
+//        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--format", "json"]) else {
+//            return nil
+//        }
+//
+//        do {
+//            guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
+//                logError("Expecting top level dictionary but didn't find one")
+//                return nil
+//            }
+//
+//            let invocation = ActionsInvocationRecord(rootJSON)
+//            return invocation
+//        } catch {
+//            logError("Error deserializing JSON: \(error)")
+//            return nil
+//        }
+//    }
     
     public func getTestPlanRunSummaries(id: String) -> ActionTestPlanRunSummaries? {
         

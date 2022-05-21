@@ -26,6 +26,8 @@ public struct ActionTestActivitySummary: XCResultObject {
     public let finish: Date?
     public let attachments: [ActionTestAttachment]
     public let subactivities: [ActionTestActivitySummary]
+    public let failureSummaryIDs: [String]
+    public let expectedFailureIDs: [String]
 
     public init?(_ json: [String: AnyObject]) {
         do {
@@ -38,6 +40,8 @@ public struct ActionTestActivitySummary: XCResultObject {
                 .ofType(ActionTestAttachment.self)
             subactivities = xcArray(element: "subactivities", from: json)
                 .ofType(ActionTestActivitySummary.self)
+            failureSummaryIDs = xcArray(element: "failureSummaryIDs", from: json).ofType(String.self)
+            expectedFailureIDs = xcArray(element: "expectedFailureIDs", from: json).ofType(String.self)
         } catch {
             logError("Error parsing ActionTestActivitySummary: \(error.localizedDescription)")
             return nil
