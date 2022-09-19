@@ -20,6 +20,7 @@
 import Foundation
 
 public struct ActionTestableSummary: XCResultObject {
+    public let identifierURL: String?
     public let projectRelativePath: String?
     public let targetName: String?
     public let testKind: String?
@@ -29,7 +30,8 @@ public struct ActionTestableSummary: XCResultObject {
     public let testLanguage: String?
     public let testRegion: String?
     
-    public init?(_ json: [String: AnyObject]) {        
+    public init?(_ json: [String: AnyObject]) {
+        identifierURL = xcOptional(element: "identifierURL", from: json)
         projectRelativePath = xcOptional(element: "projectRelativePath", from: json)
         targetName = xcOptional(element: "targetName", from: json)
         testKind = xcOptional(element: "testKind", from: json)

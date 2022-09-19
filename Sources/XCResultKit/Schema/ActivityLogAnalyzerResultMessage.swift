@@ -23,8 +23,7 @@ public struct ActivityLogAnalyzerResultMessage: XCResultObject {
     public let location: DocumentLocation
     public let annotations: [ActivityLogMessageAnnotation]
 
-    public let controlFlowSteps: [ActivityLogAnalyzerControlFlowStep]
-    public let eventSteps: [ActivityLogAnalyzerEventStep]
+    public let steps: [ActivityLogAnalyzerStep]
     public let resultType: String?
     public let keyEventIndex: Int
 
@@ -38,10 +37,8 @@ public struct ActivityLogAnalyzerResultMessage: XCResultObject {
             annotations = xcArray(element: "annotation", from: json)
                 .ofType(ActivityLogMessageAnnotation.self)
 
-            controlFlowSteps = xcArray(element: "steps", from: json)
-                .ofType(ActivityLogAnalyzerControlFlowStep.self)
-            eventSteps = xcArray(element: "steps", from: json)
-            .ofType(ActivityLogAnalyzerEventStep.self)
+            steps = xcArray(element: "steps", from: json)
+                .ofType(ActivityLogAnalyzerStep.self)
             resultType = xcOptional(element: "resultType", from: json)
             keyEventIndex = try xcRequired(element: "keyEventIndex", from: json)
         } catch {

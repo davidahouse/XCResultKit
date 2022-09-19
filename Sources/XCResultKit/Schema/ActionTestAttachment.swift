@@ -22,7 +22,10 @@ import Foundation
 public struct ActionTestAttachment: XCResultObject {
     public let uniformTypeIdentifier: String
     public let name: String?
+    public let uuid: String?
     public let timestamp: Date?
+    // TODO:
+    // public let userInfo: SortedKeyValueArray?
     public let lifetime: String
     public let inActivityIdentifier: Int
     public let filename: String?
@@ -33,6 +36,7 @@ public struct ActionTestAttachment: XCResultObject {
         do {
             uniformTypeIdentifier = try xcRequired(element: "uniformTypeIdentifier", from: json)
             name = xcOptional(element: "name", from: json)
+            uuid = xcOptional(element: "uuid", from: json)
             timestamp = xcOptional(element: "timestamp", from: json)
             lifetime = try xcRequired(element: "lifetime", from: json)
             inActivityIdentifier = try xcRequired(element: "inActivityIdentifier", from: json)
