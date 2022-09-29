@@ -23,7 +23,7 @@ public struct ActivityLogTargetBuildSection: XCResultObject {
     public let subsections: [ActivityLogSection]
     public let messages: [ActivityLogMessage]
 
-    public let subtitle: String?
+    public let subtitle: String
     public let productType: String?
 
     public init?(_ json: [String: AnyObject]) {
@@ -39,7 +39,7 @@ public struct ActivityLogTargetBuildSection: XCResultObject {
             messages = xcArray(element: "messages", from: json)
                 .ofType(ActivityLogMessage.self)
 
-            subtitle = xcOptional(element: "subtitle", from: json)
+            subtitle = try xcRequired(element: "subtitle", from: json)
             productType = xcOptional(element: "productType", from: json)
         } catch {
             logError("Error parsing ActivityLogTargetBuildSection: \(error.localizedDescription)")

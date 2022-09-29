@@ -16,7 +16,7 @@ public struct ActivityLogAnalyzerWarningMessage: XCResultObject {
     public let title: String
     public let shortTitle: String?
     public let category: String?
-    public let location: DocumentLocation
+    public let location: DocumentLocation?
     public let annotations: [ActivityLogMessageAnnotation]
 
     public init?(_ json: [String: AnyObject]) {
@@ -25,7 +25,7 @@ public struct ActivityLogAnalyzerWarningMessage: XCResultObject {
             title = try xcRequired(element: "title", from: json)
             shortTitle = xcOptional(element: "shortTitle", from: json)
             category = xcOptional(element: "category", from: json)
-            location = try xcRequired(element: "location", from: json)
+            location = xcOptional(element: "location", from: json)
             annotations = xcArray(element: "annotation", from: json)
                 .ofType(ActivityLogMessageAnnotation.self)
         } catch {

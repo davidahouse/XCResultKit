@@ -13,15 +13,10 @@ import Foundation
 //    + name: String?
 
 public struct ActionAbstractTestSummary: XCResultObject, Encodable {
-    public let name: String
+    public let name: String?
     
     public init?(_ json: [String: AnyObject]) {
-        do {
-            name = try xcRequired(element: "name", from: json)
-        } catch {
-            logError("Error parsing ActionAbstractTestSummary: \(error.localizedDescription)")
-            return nil
-        }
+        name = xcOptional(element: "name", from: json)
     }
     
     enum CodingKeys: String, CodingKey {
