@@ -8,9 +8,9 @@
 import Foundation
 
 public struct ActionTestConfiguration: XCResultObject {
-    // TODO:
-    // public let userInfo: SortedKeyValueArray?
+    public let userInfo: SortedKeyValueArray?
 
     public init?(_ json: [String: AnyObject]) {
+        userInfo = xcOptional(element: "userInfo", from: json)
     }
 }
