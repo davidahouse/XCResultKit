@@ -17,9 +17,13 @@
 
 import Foundation
 
-public struct ActionTestMetadata: XCResultObject {
-    public let name: String
-    public let identifier: String
+public struct ActionTestMetadata: XCResultObject  {
+    
+    public let identifier: String?
+    public let identifierURL: String?
+    
+    public let name: String?
+    
     public let testStatus: String
     public let duration: Double?
     public let summaryRef: Reference?
@@ -29,8 +33,9 @@ public struct ActionTestMetadata: XCResultObject {
     
     public init?(_ json: [String: AnyObject]) {
         do {
-            name = try xcRequired(element: "name", from: json)
-            identifier = try xcRequired(element: "identifier", from: json)
+            identifier = xcOptional(element: "identifier", from: json)
+            identifierURL = xcOptional(element: "identifierURL", from: json)
+            name = xcOptional(element: "name", from: json)
             testStatus = try xcRequired(element: "testStatus", from: json)
             duration = xcOptional(element: "duration", from: json)
             summaryRef = xcOptional(element: "summaryRef", from: json)

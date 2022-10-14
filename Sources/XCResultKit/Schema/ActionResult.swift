@@ -29,6 +29,7 @@ public struct ActionResult: XCResultObject {
     public let logRef: Reference?
     public let testsRef: Reference?
     public let diagnosticsRef: Reference?
+    public let consoleLogRef: Reference?
 
     public init?(_ json: [String: AnyObject]) {
         
@@ -42,6 +43,7 @@ public struct ActionResult: XCResultObject {
             logRef = xcOptional(element: "logRef", from: json)
             testsRef = xcOptional(element: "testsRef", from: json)
             diagnosticsRef = xcOptional(element: "diagnosticsRef", from: json)
+            consoleLogRef = xcOptional(element: "consoleLogRef", from: json)
         } catch {
             logError("Error parsing ActionResult: \(error.localizedDescription)")
             return nil

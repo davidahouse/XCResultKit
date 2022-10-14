@@ -13,16 +13,14 @@
 import Foundation
 
 public struct ActionTestPlanRunSummary: XCResultObject {
-    public var name: String
+    
+    public let name: String?
+
     public let testableSummaries: [ActionTestableSummary]
     
     public init?(_ json: [String: AnyObject]) {
-        do {
-            name = try xcRequired(element: "name", from: json)
-            testableSummaries = xcArray(element: "testableSummaries", from: json).ofType(ActionTestableSummary.self)
-        } catch {
-            logError("Error parsing ActionTestPlanRunSummary: \(error.localizedDescription)")
-            return nil
-        }
+        name = xcOptional(element: "name", from: json)
+
+        testableSummaries = xcArray(element: "testableSummaries", from: json).ofType(ActionTestableSummary.self)
     }
 }

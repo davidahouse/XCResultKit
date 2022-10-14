@@ -31,6 +31,7 @@ public struct ActionTestPerformanceMetricSummary: XCResultObject {
     public let maxPercentRelativeStandardDeviation: Double?
     public let maxRegression: Double?
     public let maxStandardDeviation: Double?
+    public let polarity: String?
 
     public init?(_ json: [String: AnyObject]) {
         do {
@@ -44,6 +45,7 @@ public struct ActionTestPerformanceMetricSummary: XCResultObject {
             maxPercentRelativeStandardDeviation = xcOptional(element: "maxPercentRelativeStandardDeviation", from: json)
             maxRegression = xcOptional(element: "maxRegression", from: json)
             maxStandardDeviation = xcOptional(element: "maxStandardDeviation", from: json)
+            polarity = xcOptional(element: "polarity", from: json)
         } catch {
             logError("Error parsing ActionTestPerformanceMetricSummary: \(error.localizedDescription)")
             return nil

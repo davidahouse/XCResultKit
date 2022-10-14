@@ -27,6 +27,7 @@ public struct ActionRecord: XCResultObject {
     public let runDestination: ActionRunDestinationRecord
     public let buildResult: ActionResult
     public let actionResult: ActionResult
+    public let testPlanName: String?
     
     public init?(_ json: [String: AnyObject]) {
         
@@ -39,6 +40,7 @@ public struct ActionRecord: XCResultObject {
             startedTime = try xcRequired(element: "startedTime", from: json)
             endedTime = try xcRequired(element: "endedTime", from: json)
             runDestination = try xcRequired(element: "runDestination", from: json)
+            testPlanName = xcOptional(element: "testPlanName", from: json)
         } catch {
             logError("Error parsing ActionRecord: \(error.localizedDescription)")
             return nil

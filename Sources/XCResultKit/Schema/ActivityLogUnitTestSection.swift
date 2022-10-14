@@ -24,15 +24,11 @@ public struct ActivityLogUnitTestSection: XCResultObject {
     public let domainType: String
     public let title: String
     public let startTime: Date?
-    public let duration: Double?
+    public let duration: Double
     public let result: String?
-    public let subsections: [ActivityLogMajorSection]
-    public let unitTestSubsections: [ActivityLogUnitTestSection]
-    public let commandInvocationSubsections: [ActivityLogCommandInvocationSection]
-    public let targetBuildSubsections: [ActivityLogTargetBuildSection]
+    public let location: DocumentLocation?
+    public let subsections: [ActivityLogSection]
     public let messages: [ActivityLogMessage]
-    public let resultMessages: [ActivityLogAnalyzerResultMessage]
-    public let warningMessage: [ActivityLogAnalyzerWarningMessage]
 
     public let testName: String?
     public let suiteName: String?
@@ -40,6 +36,7 @@ public struct ActivityLogUnitTestSection: XCResultObject {
     public let emittedOutput: String?
     public let performanceTestOutput: String?
     public let testsPassedString: String?
+    public let wasSkipped: Bool
     public let runnablePath: String?
     public let runnableUTI: String?
 
@@ -48,29 +45,21 @@ public struct ActivityLogUnitTestSection: XCResultObject {
             domainType = try xcRequired(element: "domainType", from: json)
             title = try xcRequired(element: "title", from: json)
             startTime = xcOptional(element: "startTime", from: json)
-            duration = xcOptional(element: "duration", from: json)
+            duration = try xcRequired(element: "duration", from: json)
             result = xcOptional(element: "result", from: json)
+            location = xcOptional(element: "location", from: json)
             subsections = xcArray(element: "subsections", from: json)
-                .ofType(ActivityLogMajorSection.self)
-            unitTestSubsections = xcArray(element: "subsections", from: json)
-                .ofType(ActivityLogUnitTestSection.self)
-            commandInvocationSubsections = xcArray(element: "subsections", from: json)
-                .ofType(ActivityLogCommandInvocationSection.self)
-            targetBuildSubsections = xcArray(element: "subsections", from: json)
-                .ofType(ActivityLogTargetBuildSection.self)
+                .ofType(ActivityLogSection.self)
             messages = xcArray(element: "messages", from: json)
                 .ofType(ActivityLogMessage.self)
-            resultMessages = xcArray(element: "messages", from: json)
-                .ofType(ActivityLogAnalyzerResultMessage.self)
-            warningMessage = xcArray(element: "messages", from: json)
-                .ofType(ActivityLogAnalyzerWarningMessage.self)
-
+            
             testName = xcOptional(element: "testName", from: json)
             suiteName = xcOptional(element: "suiteName", from: json)
             summary = xcOptional(element: "summary", from: json)
             emittedOutput = xcOptional(element: "emittedOutput", from: json)
             performanceTestOutput = xcOptional(element: "performanceTestOutput", from: json)
             testsPassedString = xcOptional(element: "testsPassedString", from: json)
+            wasSkipped = try xcRequired(element: "wasSkipped", from: json)
             runnablePath = xcOptional(element: "runnablePath", from: json)
             runnableUTI = xcOptional(element: "runnableUTI", from: json)
         } catch {
