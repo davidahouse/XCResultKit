@@ -22,15 +22,10 @@ public struct ActionTestExpectedFailure: XCResultObject {
     public let failureSummary: ActionTestFailureSummary?
     public let isTopLevelFailure: Bool
 
-    public init?(_ json: [String: AnyObject]) {
-        do {
-            uuid = xcOptional(element: "uuid", from: json)
-            failureReason = xcOptional(element: "failureReason", from: json)
-            failureSummary = xcOptional(element: "failureSummary", from: json)
-            isTopLevelFailure = try xcRequired(element: "isTopLevelFailure", from: json)
-        } catch {
-            logError("Error parsing ActionTestExpectedFailure: \(error.localizedDescription)")
-            return nil
-        }
+    public init(_ json: [String: AnyObject]) {
+        uuid = xcOptional(element: "uuid", from: json)
+        failureReason = xcOptional(element: "failureReason", from: json)
+        failureSummary = xcOptional(element: "failureSummary", from: json)
+        isTopLevelFailure = xcOptional(element: "isTopLevelFailure", from: json) ?? false
     }
 }
