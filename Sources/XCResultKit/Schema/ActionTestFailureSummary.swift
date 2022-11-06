@@ -49,7 +49,7 @@ public struct ActionTestFailureSummary: XCResultObject {
             associatedError = xcOptional(element: "associatedError", from: json)
             sourceCodeContext = xcOptional(element: "sourceCodeContext", from: json)
             timestamp = xcOptional(element: "timestamp", from: json)
-            isTopLevelFailure = try xcRequired(element: "isTopLevelFailure", from: json)
+            isTopLevelFailure = xcOptional(element: "isTopLevelFailure", from: json) ?? false
         } catch {
             logError("Error parsing ActionTestExpectedFailure: \(error.localizedDescription)")
             return nil
