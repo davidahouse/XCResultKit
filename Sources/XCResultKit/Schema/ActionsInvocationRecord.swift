@@ -18,7 +18,7 @@
 import Foundation
 
 public struct ActionsInvocationRecord: XCResultObject {
-    public let metadataRef: Reference?
+    public let metadataRef: Reference<GenericReferencedObject>?
     public let metrics: ResultMetrics
     public let issues: ResultIssueSummaries
     public let actions: [ActionRecord]

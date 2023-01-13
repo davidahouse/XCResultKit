@@ -15,8 +15,8 @@ import Foundation
 
 public struct CodeCoverageInfo: XCResultObject {
     public let hasCoverageData: Bool?
-    public let reportRef: Reference?
-    public let archiveRef: Reference?
+    public let reportRef: Reference<GenericReferencedObject>?
+    public let archiveRef: Reference<GenericReferencedObject>?
     
     public init?(_ json: [String: AnyObject]) {
         hasCoverageData = xcOptional(element: "hasCoverageData", from: json)
