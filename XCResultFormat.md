@@ -1,6 +1,6 @@
 Name: Xcode Result Types
-Version: 3.39
-Signature: PS0lrtUj8Aw=
+Version: 3.44
+Signature: G3FAemVu1AQ=
 Types:
   - ActionAbstractTestSummary
     * Kind: object
@@ -84,6 +84,7 @@ Types:
       + subactivities: [ActionTestActivitySummary]
       + failureSummaryIDs: [String]
       + expectedFailureIDs: [String]
+      + warningSummaryIDs: [String]
   - ActionTestAttachment
     * Kind: object
     * Properties:
@@ -123,6 +124,19 @@ Types:
       + sourceCodeContext: SourceCodeContext?
       + timestamp: Date?
       + isTopLevelFailure: Bool
+  - ActionTestIssueSummary
+    * Kind: object
+    * Properties:
+      + message: String?
+      + fileName: String
+      + lineNumber: Int
+      + uuid: String
+      + issueType: String?
+      + detailedDescription: String?
+      + attachments: [ActionTestAttachment]
+      + associatedError: TestAssociatedError?
+      + sourceCodeContext: SourceCodeContext?
+      + timestamp: Date?
   - ActionTestMetadata
     * Supertype: ActionTestSummaryIdentifiableObject
     * Kind: object
@@ -182,6 +196,7 @@ Types:
       + activitySummaries: [ActionTestActivitySummary]
       + repetitionPolicySummary: ActionTestRepetitionPolicySummary?
       + configuration: ActionTestConfiguration?
+      + warningSummaries: [ActionTestIssueSummary]
   - ActionTestSummaryGroup
     * Supertype: ActionTestSummaryIdentifiableObject
     * Kind: object
@@ -332,6 +347,26 @@ Types:
       + kind: String?
       + timestamp: Double
       + content: String
+      + logData: ConsoleLogItemLogData?
+  - ConsoleLogItemLogData
+    * Kind: object
+    * Properties:
+      + message: String?
+      + subsystem: String?
+      + category: String?
+      + library: String?
+      + format: String?
+      + backtrace: String?
+      + pid: Int32
+      + processName: String?
+      + sessionUUID: String?
+      + tid: UInt64
+      + messageType: UInt8
+      + senderImagePath: String?
+      + senderImageUUID: String?
+      + senderImageOffset: UInt64
+      + unixTimeInterval: Double
+      + timeZone: String?
   - ConsoleLogSection
     * Kind: object
     * Properties:
@@ -354,6 +389,14 @@ Types:
       + entityType: String
       + sharedState: String
   - Int
+    * Kind: value
+  - Int16
+    * Kind: value
+  - Int32
+    * Kind: value
+  - Int64
+    * Kind: value
+  - Int8
     * Kind: value
   - IssueSummary
     * Kind: object
@@ -378,6 +421,7 @@ Types:
       + errorSummaries: [IssueSummary]
       + testFailureSummaries: [TestFailureIssueSummary]
       + warningSummaries: [IssueSummary]
+      + testWarningSummaries: [TestIssueSummary]
   - ResultMetrics
     * Kind: object
     * Properties:
@@ -387,6 +431,7 @@ Types:
       + testsFailedCount: Int
       + testsSkippedCount: Int
       + warningCount: Int
+      + totalCoveragePercentage: Double?
   - SortedKeyValueArray
     * Kind: object
     * Properties:
@@ -430,8 +475,21 @@ Types:
     * Kind: object
     * Properties:
       + testCaseName: String
+  - TestIssueSummary
+    * Supertype: IssueSummary
+    * Kind: object
+    * Properties:
+      + testCaseName: String
   - TypeDefinition
     * Kind: object
     * Properties:
       + name: String
       + supertype: TypeDefinition?
+  - UInt16
+    * Kind: value
+  - UInt32
+    * Kind: value
+  - UInt64
+    * Kind: value
+  - UInt8
+    * Kind: value

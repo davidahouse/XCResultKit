@@ -4,14 +4,16 @@
 //
 //  Created by David House on 6/30/19.
 //
-//- ResultMetrics
-//    * Kind: object
-//* Properties:
-//+ analyzerWarningCount: Int
-//+ errorCount: Int
-//+ testsCount: Int
-//+ testsFailedCount: Int
-//+ warningCount: Int
+// - ResultMetrics
+// * Kind: object
+// * Properties:
+//     + analyzerWarningCount: Int
+//     + errorCount: Int
+//     + testsCount: Int
+//     + testsFailedCount: Int
+//     + testsSkippedCount: Int
+//     + warningCount: Int
+//     + totalCoveragePercentage: Double?
 
 import Foundation
 
@@ -22,6 +24,7 @@ public struct ResultMetrics: XCResultObject {
     public let testsFailedCount: Int?
     public let warningCount: Int?
     public let testsSkippedCount: Int?
+    public let totalCoveragePercentage: Double?
     
     public init?(_ json: [String: AnyObject]) {    
         analyzerWarningCount = xcOptional(element: "analyzerWarningCount", from: json)
@@ -30,5 +33,6 @@ public struct ResultMetrics: XCResultObject {
         testsFailedCount = xcOptional(element: "testsFailedCount", from: json)
         warningCount = xcOptional(element: "warningCount", from: json)
         testsSkippedCount = xcOptional(element: "testsSkippedCount", from: json)
+        totalCoveragePercentage = xcOptional(element: "totalCoveragePercentage", from: json)
     }
 }
