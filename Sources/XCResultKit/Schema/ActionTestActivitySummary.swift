@@ -4,16 +4,19 @@
 //
 //  Created by David House on 7/5/19.
 //
-//- ActionTestActivitySummary
-//    * Kind: object
-//* Properties:
-//+ title: String
-//+ activityType: String
-//+ uuid: String
-//+ start: Date?
-//+ finish: Date?
-//+ attachments: [ActionTestAttachment]
-//+ subactivities: [ActionTestActivitySummary]
+// - ActionTestActivitySummary
+// * Kind: object
+// * Properties:
+//     + title: String
+//     + activityType: String
+//     + uuid: String
+//     + start: Date?
+//     + finish: Date?
+//     + attachments: [ActionTestAttachment]
+//     + subactivities: [ActionTestActivitySummary]
+//     + failureSummaryIDs: [String]
+//     + expectedFailureIDs: [String]
+//     + warningSummaryIDs: [String]
 
 import Foundation
 
@@ -28,6 +31,7 @@ public struct ActionTestActivitySummary: XCResultObject {
     public let subactivities: [ActionTestActivitySummary]
     public let failureSummaryIDs: [String]
     public let expectedFailureIDs: [String]
+    public let warningSummaryIDs: [String]
 
     public init?(_ json: [String: AnyObject]) {
         do {
@@ -42,6 +46,7 @@ public struct ActionTestActivitySummary: XCResultObject {
                 .ofType(ActionTestActivitySummary.self)
             failureSummaryIDs = xcArray(element: "failureSummaryIDs", from: json).ofType(String.self)
             expectedFailureIDs = xcArray(element: "expectedFailureIDs", from: json).ofType(String.self)
+            warningSummaryIDs = xcArray(element: "warningSummaryIDs", from: json).ofType(String.self)
         } catch {
             logError("Error parsing ActionTestActivitySummary: \(error.localizedDescription)")
             return nil
