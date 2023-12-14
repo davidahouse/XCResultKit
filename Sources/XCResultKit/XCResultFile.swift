@@ -98,6 +98,8 @@ public class XCResultFile {
     public func exportRecursiveJson() -> Data? {
         let encoder = JSONEncoder()
         encoder.userInfo[.xcResultFile] = self
+        // Set Date format to use unix epoch
+        encoder.dateEncodingStrategy = .secondsSince1970
         return try? encoder.encode(getInvocationRecord())
     }
 
