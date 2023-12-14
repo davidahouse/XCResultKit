@@ -26,7 +26,7 @@ public struct ActionTestAttachment: XCResultObject {
     public let timestamp: Date?
     public let userInfo: SortedKeyValueArray?
     public let lifetime: String
-    public let inActivityIdentifier: Int
+    public let inActivityIdentifier: Int?
     public let filename: String?
     public let payloadRef: Reference<GenericReferencedObject>?
     public let payloadSize: Int
@@ -39,7 +39,7 @@ public struct ActionTestAttachment: XCResultObject {
             timestamp = xcOptional(element: "timestamp", from: json)
             lifetime = try xcRequired(element: "lifetime", from: json)
             userInfo = xcOptional(element: "userInfo", from: json)
-            inActivityIdentifier = try xcRequired(element: "inActivityIdentifier", from: json)
+            inActivityIdentifier = xcOptional(element: "inActivityIdentifier", from: json)
             filename = xcOptional(element: "filename", from: json)
             payloadRef = xcOptional(element: "payloadRef", from: json)
             payloadSize = try xcRequired(element: "payloadSize", from: json)
