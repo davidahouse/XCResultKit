@@ -42,63 +42,42 @@ public class XCResultFile {
     }
     
     public func getTestPlanRunSummaries(id: String) -> ActionTestPlanRunSummaries? {
-        
-        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
+        guard let rootJSON = getRootJson(id: id) else {
             return nil
         }
-        
-        do {
-            guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
-                logError("Expecting top level dictionary but didn't find one")
-                return nil
-            }
-            
-            let runSummaries = ActionTestPlanRunSummaries(rootJSON)
-            return runSummaries
-        } catch {
-            logError("Error deserializing JSON: \(error)")
-            return nil
-        }
+
+        return ActionTestPlanRunSummaries(rootJSON)
     }
 
     public func getLogs(id: String) -> ActivityLogSection? {
-        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
+        guard let rootJSON = getRootJson(id: id) else {
             return nil
         }
 
-        do {
-            guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
-                logError("Expecting top level dictionary but didn't find one")
-                return nil
-            }
-
-            return ActivityLogSection(rootJSON)
-        } catch {
-            logError("Error deserializing JSON: \(error)")
-            return nil
-        }
+        return ActivityLogSection(rootJSON)
     }
     
     public func getActionTestSummary(id: String) -> ActionTestSummary? {
-        
-        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
+        guard let rootJSON = getRootJson(id: id) else {
             return nil
         }
         
+        return ActionTestSummary(rootJSON)
+    }
+    
+    func getRootJson(id: String) -> [String: AnyObject]? {
+        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
+            return nil
+        }
+
         do {
-            guard let rootJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject] else {
-                logError("Expecting top level dictionary but didn't find one")
-                return nil
-            }
-            
-            let summary = ActionTestSummary(rootJSON)
-            return summary
+            return try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: AnyObject]
         } catch {
             logError("Error deserializing JSON: \(error)")
             return nil
         }
     }
-    
+
     public func getPayload(id: String) -> Data? {
         
         guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id]) else {
@@ -113,7 +92,17 @@ public class XCResultFile {
         xcrun(["xcresulttool", "export", "--type", "file", "--path", url.path, "--id", id, "--output-path", tempPath.path], output: .never)
         return tempPath
     }
-    
+
+    /// Encodes the root invocation record and any available referenced objects
+    /// - Returns: A json blob of the invocation record's json structure
+    public func exportRecursiveJson() -> Data? {
+        let encoder = JSONEncoder()
+        encoder.userInfo[.xcResultFile] = self
+        // Set Date format to use unix epoch
+        encoder.dateEncodingStrategy = .secondsSince1970
+        return try? encoder.encode(getInvocationRecord())
+    }
+
     public func getCodeCoverage() -> CodeCoverage? {
         
         guard let data = xcrun(["xccov", "view", "--report", "--json", url.path]) else {
@@ -161,4 +150,8 @@ public class XCResultFile {
             }
         }
     }
+}
+
+public extension CodingUserInfoKey {
+    static let xcResultFile = CodingUserInfoKey(rawValue: "xcResultFile")!
 }

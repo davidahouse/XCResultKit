@@ -26,7 +26,7 @@ public struct ActionTestMetadata: XCResultObject  {
     
     public let testStatus: String
     public let duration: Double?
-    public let summaryRef: Reference?
+    public let summaryRef: Reference<ActionTestSummary>?
     public let performanceMetricsCount: Int?
     public let failureSummariesCount: Int?
     public let activitySummariesCount: Int?

@@ -7,8 +7,22 @@
 
 import Foundation
 
-protocol XCResultObject {
+// TODO: This can be replaced with just `Codable`
+public protocol XCResultObject: Encodable {
     init?(_ json: [String: AnyObject])
+}
+
+public struct GenericReferencedObject: XCResultObject {
+    let json: Data
+    
+    public init?(_ json: [String : AnyObject]) {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json)
+            self.json = jsonData
+        } catch {
+            return nil
+        }
+    }
 }
 
 enum XCResultError: Error {

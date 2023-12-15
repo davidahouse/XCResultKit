@@ -28,7 +28,7 @@ public struct ActionTestAttachment: XCResultObject {
     public let lifetime: String
     public let inActivityIdentifier: Int?
     public let filename: String?
-    public let payloadRef: Reference?
+    public let payloadRef: Reference<GenericReferencedObject>?
     public let payloadSize: Int
 
     public init?(_ json: [String: AnyObject]) {

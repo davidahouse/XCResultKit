@@ -26,7 +26,7 @@ public struct ActionTestRepetitionPolicySummary: XCResultObject {
 
 }
 
-public enum RepetitionMode: String {
+public enum RepetitionMode: String, Encodable {
     case none = "None"
     case runUntilFailure = "RunUntilFailure"
     case runRetryOnFailure = "RunRetryOnFailure"

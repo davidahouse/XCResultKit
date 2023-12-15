@@ -25,11 +25,11 @@ public struct ActionResult: XCResultObject {
     public let metrics: ResultMetrics
     public let issues: ResultIssueSummaries
     public let coverage: CodeCoverageInfo
-    public let timelineRef: Reference?
-    public let logRef: Reference?
-    public let testsRef: Reference?
-    public let diagnosticsRef: Reference?
-    public let consoleLogRef: Reference?
+    public let timelineRef: Reference<GenericReferencedObject>?
+    public let logRef: Reference<ActivityLogSection>?
+    public let testsRef: Reference<ActionTestPlanRunSummaries>?
+    public let diagnosticsRef: Reference<GenericReferencedObject>?
+    public let consoleLogRef: Reference<GenericReferencedObject>?
 
     public init?(_ json: [String: AnyObject]) {
         
