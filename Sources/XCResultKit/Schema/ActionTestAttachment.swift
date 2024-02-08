@@ -29,7 +29,7 @@ public struct ActionTestAttachment: XCResultObject {
     public let inActivityIdentifier: Int?
     public let filename: String?
     public let payloadRef: Reference<GenericReferencedObject>?
-    public let payloadSize: Int
+    public let payloadSize: Int?
 
     public init?(_ json: [String: AnyObject]) {
         do {
@@ -42,7 +42,7 @@ public struct ActionTestAttachment: XCResultObject {
             inActivityIdentifier = xcOptional(element: "inActivityIdentifier", from: json)
             filename = xcOptional(element: "filename", from: json)
             payloadRef = xcOptional(element: "payloadRef", from: json)
-            payloadSize = try xcRequired(element: "payloadSize", from: json)
+            payloadSize = xcOptional(element: "payloadSize", from: json)
         } catch {
             logError("Error parsing ActionTestAttachment: \(error.localizedDescription)")
             return nil
