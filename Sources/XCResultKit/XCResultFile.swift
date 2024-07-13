@@ -137,6 +137,67 @@ public class XCResultFile {
 		return xcrun(arguments, output: output)
 	}
     
+    /// The export type can be file or directory
+    public enum ExportType: String {
+        case file
+        case directory
+    }
+    
+    
+    /// Export attachment file or folder
+    ///
+    ///     If the folder where the file will be exported doesn't exist, the command will fail
+    ///     with this example: (error: unexpected error at top-level: noEntry)
+    ///
+    /// - Parameters:
+    ///   - id: The id of xcresult object
+    ///   - outputPath: The export output path location
+    ///   - type: The export type
+    ///
+    /// - Note: The outputPath must contained the path of folder and the name of the final exported file with an extension
+    ///
+    public func exportAttachment(id: String, outputPath: String, type: ExportType) {
+        let processArgs = [
+            "xcresulttool",
+            "export",
+            "--type", type.rawValue,
+            "--path", url.path,
+            "--id", id,
+            "--output-path", outputPath
+        ]
+        
+        xcrun(processArgs, output: .never)
+    }
+    
+    /// Export attachment file or folder
+    ///
+    ///     if the folder where the file will be exported doesn't exist, the command will fail
+    ///     with this example (error: unexpected error at top-level: noEntry)
+    ///
+    /// - Parameters:
+    ///   - attachment: The ActionTestAttachment object
+    ///   - outputPath: The export output path location
+    ///
+    /// - Note: The outputPath must contained the path of folder where the final file or folder will be exported
+    ///
+    public func exportAttachment(attachment: ActionTestAttachment, outputPath: String) {
+        guard let id = attachment.payloadRef?.id else { return }
+        let type = ExportType.file.rawValue
+        let filename = attachment.filename ?? id
+        let attachmentOutputPath = URL(fileURLWithPath: outputPath).appendingPathComponent(filename)
+        
+        let processArgs = [
+            "xcresulttool",
+            "export",
+            "--type", type,
+            "--path", url.path,
+            "--id", id,
+            "--output-path", attachmentOutputPath.path
+        ]
+        
+        xcrun(processArgs, output: .never)
+    }
+    
     @discardableResult
     private func xcrun(_ arguments: [String], output: XCRunOutput = .onlyOnSuccess) -> Data? {
         autoreleasepool {
