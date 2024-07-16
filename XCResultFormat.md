@@ -1,6 +1,6 @@
 Name: Xcode Result Types
-Version: 3.44
-Signature: G3FAemVu1AQ=
+Version: 3.53
+Signature: HAB7BB+BxgA=
 Types:
   - ActionAbstractTestSummary
     * Kind: object
@@ -124,6 +124,7 @@ Types:
       + sourceCodeContext: SourceCodeContext?
       + timestamp: Date?
       + isTopLevelFailure: Bool
+      + expression: TestExpression?
   - ActionTestIssueSummary
     * Kind: object
     * Properties:
@@ -195,14 +196,24 @@ Types:
       + skipNoticeSummary: ActionTestNoticeSummary?
       + activitySummaries: [ActionTestActivitySummary]
       + repetitionPolicySummary: ActionTestRepetitionPolicySummary?
+      + arguments: [TestArgument]
       + configuration: ActionTestConfiguration?
       + warningSummaries: [ActionTestIssueSummary]
+      + summary: String?
+      + documentation: [TestDocumentation]
+      + trackedIssues: [IssueTrackingMetadata]
+      + tags: [TestTag]
   - ActionTestSummaryGroup
     * Supertype: ActionTestSummaryIdentifiableObject
     * Kind: object
     * Properties:
       + duration: Double
       + subtests: [ActionTestSummaryIdentifiableObject]
+      + skipNoticeSummary: ActionTestNoticeSummary?
+      + summary: String?
+      + documentation: [TestDocumentation]
+      + trackedIssues: [IssueTrackingMetadata]
+      + tags: [TestTag]
   - ActionTestSummaryIdentifiableObject
     * Supertype: ActionAbstractTestSummary
     * Kind: object
@@ -308,6 +319,14 @@ Types:
       + location: DocumentLocation?
       + subsections: [ActivityLogSection]
       + messages: [ActivityLogMessage]
+      + attachments: [ActivityLogSectionAttachment]
+  - ActivityLogSectionAttachment
+    * Kind: object
+    * Properties:
+      + identifier: String
+      + majorVersion: UInt8
+      + minorVersion: UInt8
+      + data: Data
   - ActivityLogTargetBuildSection
     * Supertype: ActivityLogMajorSection
     * Kind: object
@@ -372,6 +391,8 @@ Types:
     * Properties:
       + title: String
       + items: [ConsoleLogItem]
+  - Data
+    * Kind: value
   - Date
     * Kind: value
   - DocumentLocation
@@ -405,6 +426,13 @@ Types:
       + message: String
       + producingTarget: String?
       + documentLocationInCreatingWorkspace: DocumentLocation?
+  - IssueTrackingMetadata
+    * Kind: object
+    * Properties:
+      + identifier: String
+      + url: URL?
+      + comment: String?
+      + summary: String
   - ObjectID
     * Kind: object
     * Properties:
@@ -464,12 +492,32 @@ Types:
       + location: SourceCodeLocation?
   - String
     * Kind: value
+  - TestArgument
+    * Kind: object
+    * Properties:
+      + parameter: TestParameter?
+      + identifier: String?
+      + description: String
+      + debugDescription: String?
+      + typeName: String?
+      + value: TestValue
   - TestAssociatedError
     * Kind: object
     * Properties:
       + domain: String?
       + code: Int?
       + userInfo: SortedKeyValueArray?
+  - TestDocumentation
+    * Kind: object
+    * Properties:
+      + content: String
+      + format: String
+  - TestExpression
+    * Kind: object
+    * Properties:
+      + sourceCode: String
+      + value: TestValue?
+      + subexpressions: [TestExpression]
   - TestFailureIssueSummary
     * Supertype: IssueSummary
     * Kind: object
@@ -480,6 +528,29 @@ Types:
     * Kind: object
     * Properties:
       + testCaseName: String
+  - TestParameter
+    * Kind: object
+    * Properties:
+      + label: String
+      + name: String?
+      + typeName: String?
+      + fullyQualifiedTypeName: String?
+  - TestTag
+    * Kind: object
+    * Properties:
+      + identifier: String
+      + name: String
+      + anchors: [String]
+  - TestValue
+    * Kind: object
+    * Properties:
+      + description: String
+      + debugDescription: String?
+      + typeName: String?
+      + fullyQualifiedTypeName: String?
+      + label: String?
+      + isCollection: Bool
+      + children: TestValue?
   - TypeDefinition
     * Kind: object
     * Properties:
@@ -492,4 +563,6 @@ Types:
   - UInt64
     * Kind: value
   - UInt8
+    * Kind: value
+  - URL
     * Kind: value
