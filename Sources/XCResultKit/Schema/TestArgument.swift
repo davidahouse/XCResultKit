@@ -16,7 +16,7 @@ import Foundation
 //	+ debugDescription: String?
 //	+ typeName: String?
 //	+ value: TestValue
-public class TestArgument: XCResultObject {
+public struct TestArgument: XCResultObject {
 	public let parameter: TestParameter?
 	public let identifier: String?
 	public let description: String
@@ -24,7 +24,7 @@ public class TestArgument: XCResultObject {
 	public let typeName: String?
 	public let value: TestValue
 
-	required public init?(_ json: [String: AnyObject]) {
+	public init?(_ json: [String: AnyObject]) {
 		do {
 			parameter = xcOptional(element: "parameter", from: json)
 			identifier = xcOptional(element: "identifier", from: json)
