@@ -23,7 +23,7 @@ public class XCResultFile {
     
     public func getInvocationRecord() -> ActionsInvocationRecord? {
         
-        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--format", "json"]) else {
+        guard let data = xcresulttool(["get", "--path", url.path, "--format", "json"]) else {
             return nil
         }
         
@@ -66,7 +66,7 @@ public class XCResultFile {
     }
     
     func getRootJson(id: String) -> [String: AnyObject]? {
-        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id, "--format", "json"]) else {
+        guard let data = xcresulttool(["get", "--path", url.path, "--id", id, "--format", "json"]) else {
             return nil
         }
 
@@ -80,7 +80,7 @@ public class XCResultFile {
 
     public func getPayload(id: String) -> Data? {
         
-        guard let data = xcrun(["xcresulttool", "get", "--path", url.path, "--id", id]) else {
+        guard let data = xcresulttool(["get", "--path", url.path, "--id", id]) else {
             return nil
         }
         return data
@@ -89,7 +89,7 @@ public class XCResultFile {
     public func exportPayload(id: String) -> URL? {
         
         let tempPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(id)
-        xcrun(["xcresulttool", "export", "--type", "file", "--path", url.path, "--id", id, "--output-path", tempPath.path], output: .never)
+        xcresulttool(["export", "--type", "file", "--path", url.path, "--id", id, "--output-path", tempPath.path], output: .never)
         return tempPath
     }
 
@@ -117,6 +117,25 @@ public class XCResultFile {
             return nil
         }
     }
+	
+	@discardableResult
+	private func xcresulttool(_ args: [String], output: XCRunOutput = .onlyOnSuccess) -> Data? {
+		var arguments = args
+		
+		// xcrun version 70 ships a new version of xcresulttool. Ensure compatibility.
+		if let versionData = xcrun(["--version"]), let versionString = String(data: versionData, encoding: .ascii) {
+			let scanner = Scanner(string: versionString)
+			scanner.scanString("xcrun version ", into: nil)
+			
+			var version: Double = 0
+			if scanner.scanDouble(&version), version >= 70.0 {
+				arguments.append("--legacy")
+			}
+		}
+		
+		arguments.insert("xcresulttool", at: 0)
+		return xcrun(arguments, output: output)
+	}
     
     @discardableResult
     private func xcrun(_ arguments: [String], output: XCRunOutput = .onlyOnSuccess) -> Data? {
