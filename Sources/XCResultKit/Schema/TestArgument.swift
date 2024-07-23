@@ -19,7 +19,7 @@ import Foundation
 public struct TestArgument: XCResultObject {
 	public let parameter: TestParameter?
 	public let identifier: String?
-	public let description: String
+	public let description: String?
 	public let debugDescription: String?
 	public let typeName: String?
 	public let value: TestValue
@@ -28,7 +28,8 @@ public struct TestArgument: XCResultObject {
 		do {
 			parameter = xcOptional(element: "parameter", from: json)
 			identifier = xcOptional(element: "identifier", from: json)
-			description = try xcRequired(element: "description", from: json)
+			//Note schema says that description is required, but I found it to be missing when testing
+			description = xcOptional(element: "description", from: json)
 			debugDescription = xcOptional(element: "debugDescription", from: json)
 			typeName = xcOptional(element: "typeName", from: json)
 			value = try xcRequired(element: "value", from: json)

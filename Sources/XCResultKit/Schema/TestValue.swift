@@ -23,7 +23,8 @@ public class TestValue: XCResultObject {
 	public let typeName: String?
 	public let fullyQualifiedTypeName: String?
 	public let label: String?
-	public let isCollection: Bool
+	//Required in schema, missing in practice
+	public let isCollection: Bool?
 	public let children: TestValue?
 	
 	required public init?(_ json: [String: AnyObject]) {
@@ -34,7 +35,7 @@ public class TestValue: XCResultObject {
 			typeName = xcOptional(element: "typeName", from: json)
 			fullyQualifiedTypeName = xcOptional(element: "fullyQualifiedTypeName", from: json)
 			label = xcOptional(element: "label", from: json)
-			isCollection = try xcRequired(element: "isCollection", from: json)
+			isCollection = xcOptional(element: "isCollection", from: json)
 			children = xcOptional(element: "children", from: json)
 		} catch {
 			logError("Error parsing TestValue: \(error.localizedDescription)")
