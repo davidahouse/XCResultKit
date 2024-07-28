@@ -89,7 +89,11 @@ public class XCResultFile {
     public func exportPayload(id: String) -> URL? {
         
         let tempPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(id)
-        xcresulttool(["export", "--type", "file", "--path", url.path, "--id", id, "--output-path", tempPath.path], output: .never)
+        exportAttachment(
+            id: id,
+            outputPath: tempPath.path,
+            type: .file
+        )
         return tempPath
     }
 
@@ -158,15 +162,14 @@ public class XCResultFile {
     ///
     public func exportAttachment(id: String, outputPath: String, type: ExportType) {
         let processArgs = [
-            "xcresulttool",
             "export",
             "--type", type.rawValue,
             "--path", url.path,
             "--id", id,
             "--output-path", outputPath
         ]
-        
-        xcrun(processArgs, output: .never)
+
+        xcresulttool(processArgs, output: .never)
     }
     
     /// Export attachment file or folder
@@ -182,20 +185,14 @@ public class XCResultFile {
     ///
     public func exportAttachment(attachment: ActionTestAttachment, outputPath: String) {
         guard let id = attachment.payloadRef?.id else { return }
-        let type = ExportType.file.rawValue
         let filename = attachment.filename ?? id
         let attachmentOutputPath = URL(fileURLWithPath: outputPath).appendingPathComponent(filename)
         
-        let processArgs = [
-            "xcresulttool",
-            "export",
-            "--type", type,
-            "--path", url.path,
-            "--id", id,
-            "--output-path", attachmentOutputPath.path
-        ]
-        
-        xcrun(processArgs, output: .never)
+        exportAttachment(
+            id: id,
+            outputPath: attachmentOutputPath.path,
+            type: ExportType.file
+        )
     }
     
     @discardableResult
