@@ -8,26 +8,7 @@ final class XCResultFileTests: XCTestCase {
     enum ParserTestError: Error {
         case noTestFound
     }
-    
-    lazy var xcparseProcess: Process  = {
-        let fooBinary = productsDirectory.appendingPathComponent("xcparse")
-        let process = Process()
-        process.executableURL = fooBinary
-        return process
-    }()
-    
-    /// Returns path to the built products directory.
-    var productsDirectory: URL {
-#if os(macOS)
-        for bundle in Bundle.allBundles where bundle.bundlePath.hasSuffix(".xctest") {
-            return bundle.bundleURL.deletingLastPathComponent()
-        }
-        fatalError("couldn't find the products directory")
-#else
-        return Bundle.main.bundleURL
-#endif
-    }
-    
+
     lazy var temporaryOutputDirectoryURL:URL  = {
         // Setup a temp test folder that can be used as a sandbox
         let tempDirectoryURL = FileManager.default.temporaryDirectory
@@ -37,11 +18,6 @@ final class XCResultFileTests: XCTestCase {
         tempDirectoryURL.createDirectoryIfNecessary(createIntermediates: false)
         return temporaryOutputDirectoryURL
     }()
-    
-    func runAndWaitForXCParseProcess() throws  {
-        try xcparseProcess.run()
-        xcparseProcess.waitUntilExit()
-    }
     
     func testScreenshotsHEIC() throws {
         let file = try Resource(name: "testHEIC", type: "xcresult")
