@@ -1,5 +1,5 @@
 import Foundation
-
+#if os(macOS)
 import XCTest
 @testable import XCResultKit
 
@@ -12,7 +12,7 @@ final class XCResultFileTests: XCTestCase {
     lazy var temporaryOutputDirectoryURL:URL  = {
         // Setup a temp test folder that can be used as a sandbox
         let tempDirectoryURL = FileManager.default.temporaryDirectory
-        let temporaryOutputDirectoryName = ProcessInfo().globallyUniqueString
+        let temporaryOutputDirectoryName = UUID().uuidString
         let temporaryOutputDirectoryURL =
         tempDirectoryURL.appendingPathComponent(temporaryOutputDirectoryName)
         tempDirectoryURL.createDirectoryIfNecessary(createIntermediates: false)
@@ -131,3 +131,4 @@ public extension Foundation.URL {
         }
     }
 }
+#endif
