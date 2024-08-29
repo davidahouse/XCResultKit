@@ -20,7 +20,9 @@ public class XCResultFile {
     public init(url: URL) {
         self.url = url
     }
-    
+	
+	private var isAtLeastXcode16: Bool?
+	
     public func getInvocationRecord() -> ActionsInvocationRecord? {
         
         guard let data = xcresulttool(["get", "--path", url.path, "--format", "json"]) else {
@@ -122,31 +124,42 @@ public class XCResultFile {
         }
     }
 	
+	
 	@discardableResult
 	private func xcresulttool(_ args: [String], output: XCRunOutput = .onlyOnSuccess) -> Data? {
 		var arguments = args
 		
-		// xcrun version 70 ships a new version of xcresulttool. Ensure compatibility.
-		if let versionData = xcrun(["--version"]), let versionString = String(data: versionData, encoding: .ascii) {
-			let scanner = Scanner(string: versionString)
-			scanner.scanString("xcrun version ", into: nil)
-			
-			var version: Double = 0
-			if scanner.scanDouble(&version), version >= 70.0 {
-				arguments.append("--legacy")
-			}
+		if appendLegacyFlag {
+			arguments.append("--legacy")
 		}
 		
 		arguments.insert("xcresulttool", at: 0)
 		return xcrun(arguments, output: output)
 	}
     
+	private var appendLegacyFlag: Bool {
+		if let isAtLeastXcode16 = isAtLeastXcode16 {
+			return isAtLeastXcode16
+		}
+		var appendLegacy = false
+		// xcrun version 70 ships a new version of xcresulttool. Ensure compatibility.
+		if let versionData = xcrun(["--version"]), let versionString = String(data: versionData, encoding: .ascii) {
+			let scanner = Scanner(string: versionString)
+			scanner.scanString("xcrun version ")
+
+			if let version = scanner.scanDouble(), version >= 70.0 {
+				appendLegacy = true
+			}
+		}
+		isAtLeastXcode16 = appendLegacy
+		return appendLegacy
+	}
+	
     /// The export type can be file or directory
     public enum ExportType: String {
         case file
         case directory
     }
-    
     
     /// Export attachment file or folder
     ///
@@ -161,13 +174,17 @@ public class XCResultFile {
     /// - Note: The outputPath must contained the path of folder and the name of the final exported file with an extension
     ///
     public func exportAttachment(id: String, outputPath: String, type: ExportType) {
-        let processArgs = [
+        var processArgs = [
             "export",
             "--type", type.rawValue,
             "--path", url.path,
             "--id", id,
             "--output-path", outputPath
         ]
+		
+		if appendLegacyFlag {
+			processArgs.append("--legacy")
+		}
 
         xcresulttool(processArgs, output: .never)
     }
