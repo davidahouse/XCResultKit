@@ -214,34 +214,32 @@ public class XCResultFile {
     
     @discardableResult
     private func xcrun(_ arguments: [String], output: XCRunOutput = .onlyOnSuccess) -> Data? {
-        autoreleasepool {
-            let task = Process()
-            task.launchPath = "/usr/bin/xcrun"
-            task.arguments = arguments
+        let task = Process()
+        task.launchPath = "/usr/bin/xcrun"
+        task.arguments = arguments
+        
+        var resultData: Data?
+        if output != .never {
+            let pipe = Pipe()
+            task.standardOutput = pipe
+            task.launch()
             
-            var resultData: Data?
-            if output != .never {
-                let pipe = Pipe()
-                task.standardOutput = pipe
-                task.launch()
-                
-                resultData = pipe.fileHandleForReading.readDataToEndOfFile()
-            } else {
-                task.launch()
-            }
-            
-            task.waitUntilExit()
-
-            let taskSucceeded = task.terminationStatus == EXIT_SUCCESS
-            
-            switch output {
-            case .always:
-                return resultData
-            case .onlyOnSuccess:
-                return taskSucceeded ? resultData : nil
-            case .never:
-                return nil
-            }
+            resultData = pipe.fileHandleForReading.readDataToEndOfFile()
+        } else {
+            task.launch()
+        }
+        
+        task.waitUntilExit()
+        
+        let taskSucceeded = task.terminationStatus == EXIT_SUCCESS
+        
+        switch output {
+        case .always:
+            return resultData
+        case .onlyOnSuccess:
+            return taskSucceeded ? resultData : nil
+        case .never:
+            return nil
         }
     }
 }
